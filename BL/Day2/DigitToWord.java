@@ -30,7 +30,7 @@ public class DigitToWord {
         } else if (num == 9) {
             System.out.println("Nine");
         } else {
-            System.out.println("Invalid input! Please enter a single-digit number.");
+            System.out.println("Invalid input! Please enter a single-digit number...");
         }
 
         sc.close();
