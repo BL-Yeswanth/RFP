@@ -4,17 +4,19 @@ public class GamblingSimulator {
 
     public static void main(String[] args) {
 
-        // UC4
         int days = 20;
         int totalAmount = 0;
 
+        int winDays = 0;
+        int lossDays = 0;
+        int totalWinAmount = 0;
+        int totalLossAmount = 0;
+
         for (int day = 1; day <= days; day++) {
 
-            // UC1
             int stake = 100;
             int bet = 1;
 
-            // UC3 (includes UC2 logic)
             while (stake > 50 && stake < 150) {
                 if (Math.random() < 0.5) {
                     stake = stake - bet;
@@ -23,8 +25,16 @@ public class GamblingSimulator {
                 }
             }
 
-            // UC4: calculate win/loss for the day
-            totalAmount = totalAmount + (stake - 100);
+            int dailyResult = stake - 100;
+            totalAmount += dailyResult;
+
+            if (dailyResult > 0) {
+                winDays++;
+                totalWinAmount += dailyResult;
+            } else {
+                lossDays++;
+                totalLossAmount += Math.abs(dailyResult);
+            }
         }
 
     }
