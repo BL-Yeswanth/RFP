@@ -48,5 +48,13 @@ public class GamblingSimulator {
             }
         }
 
+        // UC7: Decision to continue or stop gambling
+        boolean continueGambling;
+
+        if (totalAmount > 0) {
+            continueGambling = true;
+        } else {
+            continueGambling = false;
+        }
     }
 }
