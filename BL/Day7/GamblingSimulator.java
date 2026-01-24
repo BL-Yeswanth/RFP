@@ -12,6 +12,9 @@ public class GamblingSimulator {
         int totalWinAmount = 0;
         int totalLossAmount = 0;
 
+        int luckiestDay = -1;
+        int unluckiestDay = -1;
+
         for (int day = 1; day <= days; day++) {
 
             int stake = 100;
@@ -31,9 +34,17 @@ public class GamblingSimulator {
             if (dailyResult > 0) {
                 winDays++;
                 totalWinAmount += dailyResult;
+
+                if (luckiestDay == -1) {
+                    luckiestDay = day;
+                }
             } else {
                 lossDays++;
                 totalLossAmount += Math.abs(dailyResult);
+
+                if (unluckiestDay == -1) {
+                    unluckiestDay = day;
+                }
             }
         }
 
