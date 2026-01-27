@@ -6,22 +6,31 @@ public class EmployeeWageComputation {
 
         System.out.println("Welcome to Employee Wage Computation Program");
 
-        // UC1: Check Employee Attendance
-        int isPresent = (int) (Math.random() * 2); // 0 or 1
-
         int wagePerHour = 20;
         int fullDayHour = 8;
+        int partTimeHour = 4;
         int dailyWage = 0;
 
-        if (isPresent == 1) {
-            System.out.println("Employee is Present");
+        // UC3: Employee Type
+        int empType = (int) (Math.random() * 3); // 0, 1, 2
 
-            // UC2: Calculate Daily Wage
-            dailyWage = wagePerHour * fullDayHour;
-            System.out.println("Daily Employee Wage = " + dailyWage);
-        } else {
-            System.out.println("Employee is Absent");
-            System.out.println("Daily Employee Wage = " + dailyWage);
+        switch (empType) {
+
+            case 1:
+                System.out.println("Employee is Full Time");
+                dailyWage = wagePerHour * fullDayHour;
+                break;
+
+            case 2:
+                System.out.println("Employee is Part Time");
+                dailyWage = wagePerHour * partTimeHour;
+                break;
+
+            default:
+                System.out.println("Employee is Absent");
+                dailyWage = 0;
         }
+
+        System.out.println("Daily Employee Wage = " + dailyWage);
     }
 }
