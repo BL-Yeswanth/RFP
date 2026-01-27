@@ -13,7 +13,7 @@ public class EmployeeWageComputation {
 
         // UC3: Employee Type
         int empType = (int) (Math.random() * 3); // 0, 1, 2
-
+        //UC4
         switch (empType) {
 
             case 1:
