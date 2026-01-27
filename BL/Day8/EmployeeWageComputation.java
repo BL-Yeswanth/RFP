@@ -9,28 +9,33 @@ public class EmployeeWageComputation {
         int wagePerHour = 20;
         int fullDayHour = 8;
         int partTimeHour = 4;
-        int dailyWage = 0;
+        int workingDaysPerMonth = 20;
 
-        // UC3: Employee Type
-        int empType = (int) (Math.random() * 3); // 0, 1, 2
-        //UC4
-        switch (empType) {
+        int totalMonthlyWage = 0;
 
-            case 1:
-                System.out.println("Employee is Full Time");
-                dailyWage = wagePerHour * fullDayHour;
-                break;
+        // UC5: Calculate Monthly Wage
+        for (int day = 1; day <= workingDaysPerMonth; day++) {
 
-            case 2:
-                System.out.println("Employee is Part Time");
-                dailyWage = wagePerHour * partTimeHour;
-                break;
+            int empType = (int) (Math.random() * 3); // 0,1,2
+            int dailyWage = 0;
 
-            default:
-                System.out.println("Employee is Absent");
-                dailyWage = 0;
+            switch (empType) {
+
+                case 1:
+                    dailyWage = wagePerHour * fullDayHour;
+                    break;
+
+                case 2:
+                    dailyWage = wagePerHour * partTimeHour;
+                    break;
+
+                default:
+                    dailyWage = 0;
+            }
+
+            totalMonthlyWage += dailyWage;
         }
 
-        System.out.println("Daily Employee Wage = " + dailyWage);
+        System.out.println("Total Monthly Employee Wage = " + totalMonthlyWage);
     }
 }
