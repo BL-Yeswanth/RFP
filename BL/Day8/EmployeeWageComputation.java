@@ -2,23 +2,28 @@ package Day8;
 
 public class EmployeeWageComputation {
 
-    public static void main(String[] args) {
+    // Class Variables
+    static int wagePerHour = 20;
+    static int fullDayHour = 8;
+    static int partTimeHour = 4;
+    static int maxWorkingDays = 20;
+    static int maxWorkingHours = 100;
 
+    public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation Program");
 
-        int wagePerHour = 20;
-        int fullDayHour = 8;
-        int partTimeHour = 4;
+        computeEmployeeWage();
+    }
 
-        int maxWorkingDays = 20;
-        int maxWorkingHours = 100;
+    // UC7: Class Method to Compute Employee Wage
+    public static void computeEmployeeWage() {
 
         int totalWorkingDays = 0;
         int totalWorkingHours = 0;
         int totalMonthlyWage = 0;
 
-        // UC6: Calculate wage till total working hours or days reached
-        while (totalWorkingDays < maxWorkingDays && totalWorkingHours < maxWorkingHours) {
+        while (totalWorkingDays < maxWorkingDays &&
+                totalWorkingHours < maxWorkingHours) {
 
             totalWorkingDays++;
 
@@ -27,15 +32,15 @@ public class EmployeeWageComputation {
 
             switch (empType) {
 
-                case 1: // Full Time
+                case 1:
                     dailyHours = fullDayHour;
                     break;
 
-                case 2: // Part Time
+                case 2:
                     dailyHours = partTimeHour;
                     break;
 
-                default: // Absent
+                default:
                     dailyHours = 0;
             }
 
