@@ -25,6 +25,40 @@ public class Contact {
         this.email = email;
     }
 
+    // Getter
+    public String getFirstName() {
+        return firstName;
+    }
+
+    // Setters for editing
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void displayContact() {
         System.out.println(firstName + " " + lastName);
         System.out.println(address + ", " + city + ", " + state + " - " + zip);
