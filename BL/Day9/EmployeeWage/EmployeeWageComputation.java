@@ -9,33 +9,47 @@ public class EmployeeWageComputation {
         int wagePerHour = 20;
         int fullDayHour = 8;
         int partTimeHour = 8;
-        int workingDaysPerMonth = 20;
 
+        int maxWorkingDays = 20;
+        int maxWorkingHours = 100;
+
+        int totalWorkingDays = 0;
+        int totalWorkingHours = 0;
         int totalMonthlyWage = 0;
 
-        // UC5: Calculate Monthly Wage
-        for (int day = 1; day <= workingDaysPerMonth; day++) {
+        // UC6: Calculate wage till max hours or max days reached
+        while (totalWorkingDays < maxWorkingDays && totalWorkingHours < maxWorkingHours) {
+
+            totalWorkingDays++;
 
             int empType = (int) (Math.random() * 3); // 0-Absent, 1-Full Time, 2-Part Time
-            int dailyWage = 0;
+            int dailyHours = 0;
 
             switch (empType) {
 
                 case 1:
-                    dailyWage = wagePerHour * fullDayHour;
+                    dailyHours = fullDayHour;
                     break;
 
                 case 2:
-                    dailyWage = wagePerHour * partTimeHour;
+                    dailyHours = partTimeHour;
                     break;
 
                 default:
-                    dailyWage = 0;
+                    dailyHours = 0;
             }
 
-            totalMonthlyWage += dailyWage;
+            // Prevent exceeding max hours
+            if (totalWorkingHours + dailyHours > maxWorkingHours) {
+                dailyHours = maxWorkingHours - totalWorkingHours;
+            }
+
+            totalWorkingHours += dailyHours;
+            totalMonthlyWage += dailyHours * wagePerHour;
         }
 
-        System.out.println("Total Monthly Employee Wage = " + totalMonthlyWage);
+        System.out.println("Total Working Days = " + totalWorkingDays);
+        System.out.println("Total Working Hours = " + totalWorkingHours);
+        System.out.println("Total Monthly Wage = " + totalMonthlyWage);
     }
 }
