@@ -1,4 +1,4 @@
-package Day9.AdderssBook;
+package Day9.AddressBook;
 
 public class Contact {
 
@@ -26,13 +26,9 @@ public class Contact {
     }
 
     public void displayContact() {
-        System.out.println("First Name : " + firstName);
-        System.out.println("Last Name  : " + lastName);
-        System.out.println("Address    : " + address);
-        System.out.println("City       : " + city);
-        System.out.println("State      : " + state);
-        System.out.println("Zip        : " + zip);
-        System.out.println("Phone No   : " + phoneNumber);
-        System.out.println("Email      : " + email);
+        System.out.println(firstName + " " + lastName);
+        System.out.println(address + ", " + city + ", " + state + " - " + zip);
+        System.out.println("Phone: " + phoneNumber);
+        System.out.println("Email: " + email);
     }
 }
