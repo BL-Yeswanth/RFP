@@ -1,6 +1,7 @@
 package Day9.AddressBook;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -11,6 +12,7 @@ public class AddressBook {
         contactList.add(contact);
     }
 
+    // UC3: Edit Contact
     public void editContact(String firstName) {
 
         Scanner scanner = new Scanner(System.in);
@@ -41,7 +43,29 @@ public class AddressBook {
                 System.out.print("Enter New Email: ");
                 contact.setEmail(scanner.nextLine());
 
-                System.out.println("\nContact Updated Successfully");
+                System.out.println("Contact Updated Successfully");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Contact Not Found");
+        }
+    }
+
+    // ✅ UC4: Delete Contact
+    public void deleteContact(String firstName) {
+
+        Iterator<Contact> iterator = contactList.iterator();
+        boolean found = false;
+
+        while (iterator.hasNext()) {
+            Contact contact = iterator.next();
+
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+                iterator.remove();
+                System.out.println("Contact Deleted Successfully");
                 found = true;
                 break;
             }
@@ -53,6 +77,11 @@ public class AddressBook {
     }
 
     public void displayContacts() {
+        if (contactList.isEmpty()) {
+            System.out.println("Address Book is Empty");
+            return;
+        }
+
         for (Contact contact : contactList) {
             contact.displayContact();
             System.out.println("--------------------");
