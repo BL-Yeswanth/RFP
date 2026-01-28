@@ -2,50 +2,54 @@ package Day9.EmployeeWage;
 
 public class EmployeeWageComputation {
 
+    // Class Variables
+    static final int WAGE_PER_HOUR = 20;
+    static final int FULL_DAY_HOUR = 8;
+    static final int PART_TIME_HOUR = 8;
+    static final int MAX_WORKING_DAYS = 20;
+    static final int MAX_WORKING_HOURS = 100;
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to Employee Wage Computation Program");
+        computeEmployeeWage();
+    }
 
-        int wagePerHour = 20;
-        int fullDayHour = 8;
-        int partTimeHour = 8;
-
-        int maxWorkingDays = 20;
-        int maxWorkingHours = 100;
+    // UC7: Class Method to compute employee wage
+    static void computeEmployeeWage() {
 
         int totalWorkingDays = 0;
         int totalWorkingHours = 0;
         int totalMonthlyWage = 0;
 
-        // UC6: Calculate wage till max hours or max days reached
-        while (totalWorkingDays < maxWorkingDays && totalWorkingHours < maxWorkingHours) {
+        while (totalWorkingDays < MAX_WORKING_DAYS
+                && totalWorkingHours < MAX_WORKING_HOURS) {
 
             totalWorkingDays++;
 
-            int empType = (int) (Math.random() * 3); // 0-Absent, 1-Full Time, 2-Part Time
+            int empType = (int) (Math.random() * 3); // 0-Absent, 1-Full, 2-Part
             int dailyHours = 0;
 
             switch (empType) {
 
                 case 1:
-                    dailyHours = fullDayHour;
+                    dailyHours = FULL_DAY_HOUR;
                     break;
 
                 case 2:
-                    dailyHours = partTimeHour;
+                    dailyHours = PART_TIME_HOUR;
                     break;
 
                 default:
                     dailyHours = 0;
             }
 
-            // Prevent exceeding max hours
-            if (totalWorkingHours + dailyHours > maxWorkingHours) {
-                dailyHours = maxWorkingHours - totalWorkingHours;
+            if (totalWorkingHours + dailyHours > MAX_WORKING_HOURS) {
+                dailyHours = MAX_WORKING_HOURS - totalWorkingHours;
             }
 
             totalWorkingHours += dailyHours;
-            totalMonthlyWage += dailyHours * wagePerHour;
+            totalMonthlyWage += dailyHours * WAGE_PER_HOUR;
         }
 
         System.out.println("Total Working Days = " + totalWorkingDays);
