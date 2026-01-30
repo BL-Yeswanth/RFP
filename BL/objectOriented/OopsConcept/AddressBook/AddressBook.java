@@ -1,6 +1,7 @@
 package objectOriented.OopsConcept.AddressBook;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -10,23 +11,12 @@ public class AddressBook {
 
     private List<Contact> contacts = new ArrayList<>();
 
-    /**
-     * Adds a new contact to the address book.
-     *
-     * @param contact Contact object
-     */
     public void addContact(Contact contact) {
         contacts.add(contact);
         System.out.println("\nContact added successfully!");
         contact.displayContact();
     }
 
-    /**
-     * Edits an existing contact using first name.
-     *
-     * @param firstName      name to search
-     * @param updatedContact updated contact details
-     */
     public void editContact(String firstName, Contact updatedContact) {
 
         for (Contact contact : contacts) {
@@ -42,6 +32,28 @@ public class AddressBook {
 
                 System.out.println("\nContact updated successfully!");
                 contact.displayContact();
+                return;
+            }
+        }
+
+        System.out.println("\nContact not found with name: " + firstName);
+    }
+
+    /**
+     * Deletes a contact using first name.
+     *
+     * @param firstName name of the contact to delete
+     */
+    public void deleteContact(String firstName) {
+
+        Iterator<Contact> iterator = contacts.iterator();
+
+        while (iterator.hasNext()) {
+            Contact contact = iterator.next();
+
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+                iterator.remove();
+                System.out.println("\nContact deleted successfully!");
                 return;
             }
         }
