@@ -29,7 +29,6 @@ public class Contact {
     }
 
     public void displayContact() {
-        System.out.println("Contact Details:");
         System.out.println("Name    : " + firstName + " " + lastName);
         System.out.println("Address : " + address);
         System.out.println("City    : " + city);

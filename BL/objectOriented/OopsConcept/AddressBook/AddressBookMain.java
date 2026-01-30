@@ -1,5 +1,7 @@
 package objectOriented.OopsConcept.AddressBook;
 
+import java.util.Scanner;
+
 /**
  * Address Book Main Application
  */
@@ -9,17 +11,46 @@ public class AddressBookMain {
 
         System.out.println("Welcome to Address Book Program");
 
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter First Name: ");
+        String firstName = scanner.nextLine();
+
+        System.out.print("Enter Last Name: ");
+        String lastName = scanner.nextLine();
+
+        System.out.print("Enter Address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Enter City: ");
+        String city = scanner.nextLine();
+
+        System.out.print("Enter State: ");
+        String state = scanner.nextLine();
+
+        System.out.print("Enter Zip: ");
+        String zip = scanner.nextLine();
+
+        System.out.print("Enter Phone Number: ");
+        String phoneNumber = scanner.nextLine();
+
+        System.out.print("Enter Email: ");
+        String email = scanner.nextLine();
+
         Contact contact = new Contact(
-                "Yeswanth",
-                "Polisetti",
-                "ABC Street",
-                "Hyderabad",
-                "Telangana",
-                "500001",
-                "9876543210",
-                "yeswanth@gmail.com"
+                firstName,
+                lastName,
+                address,
+                city,
+                state,
+                zip,
+                phoneNumber,
+                email
         );
 
-        contact.displayContact();
+        AddressBook addressBook = new AddressBook();
+        addressBook.addContact(contact);
+
+        scanner.close();
     }
 }
