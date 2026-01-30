@@ -4,75 +4,75 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * EmpWageBuilder implements EmpWageBuilderInterface
- * UC12: Uses ArrayList to manage multiple companies
- */
-public class EmpWageBuilder implements EmpWageBuilderInterface {
+public class EmpWageBuilder implements IEmpWageBuilder {
 
-    private static final int IS_ABSENT = 0;
-    private static final int IS_FULL_TIME = 1;
-    private static final int IS_PART_TIME = 2;
-
-    private final List<CompanyEmpWage> companyList;
-
-    public EmpWageBuilder() {
-        companyList = new ArrayList<>();
-    }
+    private List<CompanyEmpWage> companyList = new ArrayList<>();
 
     @Override
-    public void addCompanyEmpWage(String companyName, int wagePerHour,
-                                  int maxWorkingDays, int maxWorkingHours) {
+    public void addCompanyEmpWage(String company, int wagePerHour,
+                                  int workingDays, int maxHours) {
 
         companyList.add(new CompanyEmpWage(
-                companyName, wagePerHour,
-                maxWorkingDays, maxWorkingHours));
+                company, wagePerHour, workingDays, maxHours
+        ));
     }
 
     @Override
-    public void computeEmployeeWages() {
+    public void computeEmpWage() {
+
         for (CompanyEmpWage company : companyList) {
-            computeEmployeeWage(company);
+            computeCompanyWage(company);
+            System.out.println(
+                    company.company + " Total Wage = " + company.totalWage
+            );
         }
     }
 
-    private void computeEmployeeWage(CompanyEmpWage company) {
+    private void computeCompanyWage(CompanyEmpWage company) {
+
+        int totalHours = 0;
+        int totalDays = 0;
+        int totalWage = 0;
 
         Random random = new Random();
-        int totalWorkingHours = 0;
-        int totalWorkingDays = 0;
 
-        while (totalWorkingDays < company.maxWorkingDays
-                && totalWorkingHours < company.maxWorkingHours) {
+        while (totalHours < company.maxHours &&
+                totalDays < company.workingDays) {
 
-            totalWorkingDays++;
-            int empCheck = random.nextInt(3);
-            int workingHours;
+            totalDays++;
+            int empType = random.nextInt(3); // 0,1,2
+            int empHours = 0;
 
-            switch (empCheck) {
-                case IS_FULL_TIME:
-                    workingHours = 8;
+            switch (empType) {
+                case 1:
+                    empHours = 8;
                     break;
-                case IS_PART_TIME:
-                    workingHours = 8;
+                case 2:
+                    empHours = 4;
                     break;
                 default:
-                    workingHours = 0;
+                    empHours = 0;
             }
 
-            if (totalWorkingHours + workingHours > company.maxWorkingHours) {
-                workingHours = company.maxWorkingHours - totalWorkingHours;
+            if (totalHours + empHours > company.maxHours) {
+                empHours = company.maxHours - totalHours;
             }
 
-            totalWorkingHours += workingHours;
-            company.totalWage += workingHours * company.wagePerHour;
+            int dailyWage = empHours * company.wagePerHour;
+            company.dailyWages.add(dailyWage);
+
+            totalHours += empHours;
+            totalWage += dailyWage;
         }
+
+        company.setTotalWage(totalWage);
     }
 
     @Override
     public int getTotalWage(String companyName) {
+
         for (CompanyEmpWage company : companyList) {
-            if (company.companyName.equalsIgnoreCase(companyName)) {
+            if (company.company.equals(companyName)) {
                 return company.totalWage;
             }
         }
