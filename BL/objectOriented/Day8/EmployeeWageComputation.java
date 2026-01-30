@@ -1,4 +1,4 @@
-package Day8;
+package objectOriented.Day8;
 
 public class EmployeeWageComputation {
 
