@@ -43,14 +43,7 @@ public class AddressBookMain {
         String email = scanner.nextLine();
 
         Contact contact = new Contact(
-                firstName,
-                lastName,
-                address,
-                city,
-                state,
-                zip,
-                phone,
-                email
+                firstName, lastName, address, city, state, zip, phone, email
         );
 
         addressBook.addContact(contact);
@@ -84,17 +77,17 @@ public class AddressBookMain {
         email = scanner.nextLine();
 
         Contact updatedContact = new Contact(
-                editName,
-                lastName,
-                address,
-                city,
-                state,
-                zip,
-                phone,
-                email
+                editName, lastName, address, city, state, zip, phone, email
         );
 
         addressBook.editContact(editName, updatedContact);
+
+        /* ---------- Delete Contact ---------- */
+
+        System.out.print("\nEnter First Name to Delete Contact: ");
+        String deleteName = scanner.nextLine();
+
+        addressBook.deleteContact(deleteName);
 
         scanner.close();
     }
