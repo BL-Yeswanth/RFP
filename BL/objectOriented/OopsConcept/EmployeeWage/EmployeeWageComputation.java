@@ -8,6 +8,7 @@ import java.util.Random;
  * UC2: Calculate Daily Employee Wage
  * UC3: Add Part Time Employee & Wage
  * UC4: Solve using Switch Case Statement
+ * UC5: Calculate Wages for a Month
  */
 public class EmployeeWageComputation {
 
@@ -19,35 +20,41 @@ public class EmployeeWageComputation {
     public static final int WAGE_PER_HOUR = 20;
     public static final int FULL_DAY_HOURS = 8;
     public static final int PART_TIME_HOURS = 8; // As per UC
+    public static final int WORKING_DAYS_PER_MONTH = 20;
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Employee Wage Computation Program");
 
         Random random = new Random();
-        int employeeCheck = random.nextInt(3);
+        int totalMonthlyWage = 0;
 
-        int workingHours;
+        // UC5: Calculate wage for 20 working days
+        for (int day = 1; day <= WORKING_DAYS_PER_MONTH; day++) {
 
-        // UC4: Switch Case for attendance
-        switch (employeeCheck) {
+            int employeeCheck = random.nextInt(3);
+            int workingHours;
 
-            case IS_FULL_TIME:
-                System.out.println("Employee is Present - Full Time");
-                workingHours = FULL_DAY_HOURS;
-                break;
+            switch (employeeCheck) {
 
-            case IS_PART_TIME:
-                System.out.println("Employee is Present - Part Time");
-                workingHours = PART_TIME_HOURS;
-                break;
+                case IS_FULL_TIME:
+                    workingHours = FULL_DAY_HOURS;
+                    break;
 
-            default:
-                System.out.println("Employee is Absent");
-                workingHours = 0;
+                case IS_PART_TIME:
+                    workingHours = PART_TIME_HOURS;
+                    break;
+
+                default:
+                    workingHours = 0;
+            }
+
+            int dailyWage = workingHours * WAGE_PER_HOUR;
+            totalMonthlyWage += dailyWage;
+
+            System.out.println("Day " + day + " Wage: " + dailyWage);
         }
 
-        int dailyWage = workingHours * WAGE_PER_HOUR;
-        System.out.println("Daily Employee Wage: " + dailyWage);
+        System.out.println("\nTotal Monthly Wage: " + totalMonthlyWage);
     }
 }
