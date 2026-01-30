@@ -4,26 +4,28 @@ import java.util.Random;
 
 /**
  * Employee Wage Computation Program
- * UC7: Refactor using Class Method and Class Variables
+ * UC8: Compute Employee Wage for Multiple Companies
  */
 public class EmployeeWageComputation {
 
-    // Class Variables (Constants)
+    // Attendance constants
     public static final int IS_ABSENT = 0;
     public static final int IS_FULL_TIME = 1;
     public static final int IS_PART_TIME = 2;
 
-    public static final int WAGE_PER_HOUR = 20;
-    public static final int FULL_DAY_HOURS = 8;
-    public static final int PART_TIME_HOURS = 8;
-
-    public static final int MAX_WORKING_DAYS = 20;
-    public static final int MAX_WORKING_HOURS = 100;
-
     /**
-     * Class Method to compute employee wage
+     * Class Method to compute employee wage for a company
+     *
+     * @param companyName        Name of the company
+     * @param wagePerHour        Wage per hour
+     * @param maxWorkingDays     Maximum working days per month
+     * @param maxWorkingHours    Maximum working hours per month
      */
-    public static void computeEmployeeWage() {
+    public static void computeEmployeeWage(
+            String companyName,
+            int wagePerHour,
+            int maxWorkingDays,
+            int maxWorkingHours) {
 
         Random random = new Random();
 
@@ -31,8 +33,8 @@ public class EmployeeWageComputation {
         int totalWorkingDays = 0;
         int totalWage = 0;
 
-        while (totalWorkingDays < MAX_WORKING_DAYS
-                && totalWorkingHours < MAX_WORKING_HOURS) {
+        while (totalWorkingDays < maxWorkingDays
+                && totalWorkingHours < maxWorkingHours) {
 
             totalWorkingDays++;
 
@@ -40,13 +42,12 @@ public class EmployeeWageComputation {
             int workingHours;
 
             switch (employeeCheck) {
-
                 case IS_FULL_TIME:
-                    workingHours = FULL_DAY_HOURS;
+                    workingHours = 8;
                     break;
 
                 case IS_PART_TIME:
-                    workingHours = PART_TIME_HOURS;
+                    workingHours = 8;
                     break;
 
                 default:
@@ -54,20 +55,17 @@ public class EmployeeWageComputation {
             }
 
             // Prevent exceeding max working hours
-            if (totalWorkingHours + workingHours > MAX_WORKING_HOURS) {
-                workingHours = MAX_WORKING_HOURS - totalWorkingHours;
+            if (totalWorkingHours + workingHours > maxWorkingHours) {
+                workingHours = maxWorkingHours - totalWorkingHours;
             }
 
             totalWorkingHours += workingHours;
-            int dailyWage = workingHours * WAGE_PER_HOUR;
+            int dailyWage = workingHours * wagePerHour;
             totalWage += dailyWage;
-
-            System.out.println("Day " + totalWorkingDays
-                    + " | Hours Worked: " + workingHours
-                    + " | Daily Wage: " + dailyWage);
         }
 
-        System.out.println("\nTotal Working Days: " + totalWorkingDays);
+        System.out.println("\nCompany: " + companyName);
+        System.out.println("Total Working Days: " + totalWorkingDays);
         System.out.println("Total Working Hours: " + totalWorkingHours);
         System.out.println("Total Wage: " + totalWage);
     }
@@ -76,7 +74,9 @@ public class EmployeeWageComputation {
 
         System.out.println("Welcome to Employee Wage Computation Program");
 
-        // UC7: Call class method
-        computeEmployeeWage();
+        // UC8: Multiple companies
+        computeEmployeeWage("TCS", 20, 20, 100);
+        computeEmployeeWage("Infosys", 25, 22, 120);
+        computeEmployeeWage("Wipro", 30, 20, 110);
     }
 }
