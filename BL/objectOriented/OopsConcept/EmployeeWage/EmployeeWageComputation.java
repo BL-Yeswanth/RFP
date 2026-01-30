@@ -9,6 +9,7 @@ import java.util.Random;
  * UC3: Add Part Time Employee & Wage
  * UC4: Solve using Switch Case Statement
  * UC5: Calculate Wages for a Month
+ * UC6: Calculate wages till max working hours or days is reached
  */
 public class EmployeeWageComputation {
 
@@ -19,18 +20,26 @@ public class EmployeeWageComputation {
 
     public static final int WAGE_PER_HOUR = 20;
     public static final int FULL_DAY_HOURS = 8;
-    public static final int PART_TIME_HOURS = 8; // As per UC
-    public static final int WORKING_DAYS_PER_MONTH = 20;
+    public static final int PART_TIME_HOURS = 8;
+
+    public static final int MAX_WORKING_DAYS = 20;
+    public static final int MAX_WORKING_HOURS = 100;
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Employee Wage Computation Program");
 
         Random random = new Random();
-        int totalMonthlyWage = 0;
 
-        // UC5: Calculate wage for 20 working days
-        for (int day = 1; day <= WORKING_DAYS_PER_MONTH; day++) {
+        int totalWorkingHours = 0;
+        int totalWorkingDays = 0;
+        int totalWage = 0;
+
+        // UC6: Calculate wage till max hours or max days
+        while (totalWorkingDays < MAX_WORKING_DAYS
+                && totalWorkingHours < MAX_WORKING_HOURS) {
+
+            totalWorkingDays++;
 
             int employeeCheck = random.nextInt(3);
             int workingHours;
@@ -49,12 +58,22 @@ public class EmployeeWageComputation {
                     workingHours = 0;
             }
 
-            int dailyWage = workingHours * WAGE_PER_HOUR;
-            totalMonthlyWage += dailyWage;
+            // Ensure total hours do not exceed max limit
+            if (totalWorkingHours + workingHours > MAX_WORKING_HOURS) {
+                workingHours = MAX_WORKING_HOURS - totalWorkingHours;
+            }
 
-            System.out.println("Day " + day + " Wage: " + dailyWage);
+            totalWorkingHours += workingHours;
+            int dailyWage = workingHours * WAGE_PER_HOUR;
+            totalWage += dailyWage;
+
+            System.out.println("Day " + totalWorkingDays
+                    + " | Hours Worked: " + workingHours
+                    + " | Daily Wage: " + dailyWage);
         }
 
-        System.out.println("\nTotal Monthly Wage: " + totalMonthlyWage);
+        System.out.println("\nTotal Working Days: " + totalWorkingDays);
+        System.out.println("Total Working Hours: " + totalWorkingHours);
+        System.out.println("Total Wage: " + totalWage);
     }
 }
