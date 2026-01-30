@@ -2,63 +2,126 @@ package objectOriented.OopsConcept.AddressBook;
 
 import java.util.Scanner;
 
-/**
- * Address Book Main Application
- */
 public class AddressBookMain {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        AddressBook addressBook = new AddressBook();
-
         System.out.println("Welcome to Address Book Program");
 
-        boolean addMoreContacts = true;
+        Scanner scanner = new Scanner(System.in);
+        AddressBookSystem system = new AddressBookSystem();
 
-        while (addMoreContacts) {
+        while (true) {
 
-            System.out.println("\nEnter Contact Details");
+            System.out.println("\n1. Add Address Book");
+            System.out.println("2. Add Contact");
+            System.out.println("3. Edit Contact");
+            System.out.println("4. Delete Contact");
+            System.out.println("5. Show Address Books");
+            System.out.println("6. Exit");
 
-            System.out.print("First Name: ");
-            String firstName = scanner.nextLine();
+            System.out.print("\nEnter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // clear buffer
 
-            System.out.print("Last Name: ");
-            String lastName = scanner.nextLine();
+            switch (choice) {
 
-            System.out.print("Address: ");
-            String address = scanner.nextLine();
+                case 1:
+                    System.out.print("Enter Address Book Name: ");
+                    String bookName = scanner.nextLine().trim();
+                    system.addAddressBook(bookName);
+                    break;
 
-            System.out.print("City: ");
-            String city = scanner.nextLine();
+                case 2:
+                    System.out.print("Enter Address Book Name: ");
+                    bookName = scanner.nextLine().trim();
+                    AddressBook addBook = system.getAddressBook(bookName);
 
-            System.out.print("State: ");
-            String state = scanner.nextLine();
+                    if (addBook == null) {
+                        System.out.println("Address Book not found!");
+                        break;
+                    }
 
-            System.out.print("Zip: ");
-            String zip = scanner.nextLine();
+                    Contact contact = readContact(scanner);
+                    addBook.addContact(contact);
+                    break;
 
-            System.out.print("Phone Number: ");
-            String phone = scanner.nextLine();
+                case 3:
+                    System.out.print("Enter Address Book Name: ");
+                    bookName = scanner.nextLine().trim();
+                    AddressBook editBook = system.getAddressBook(bookName);
 
-            System.out.print("Email: ");
-            String email = scanner.nextLine();
+                    if (editBook == null) {
+                        System.out.println("Address Book not found!");
+                        break;
+                    }
 
-            Contact contact = new Contact(
-                    firstName, lastName, address, city, state, zip, phone, email
-            );
+                    System.out.print("Enter First Name to edit: ");
+                    String editName = scanner.nextLine().trim();
 
-            addressBook.addContact(contact);
+                    Contact updatedContact = readContact(scanner);
+                    editBook.editContact(editName, updatedContact);
+                    break;
 
-            System.out.print("\nDo you want to add another contact? (yes/no): ");
-            String choice = scanner.nextLine();
+                case 4:
+                    System.out.print("Enter Address Book Name: ");
+                    bookName = scanner.nextLine().trim();
+                    AddressBook deleteBook = system.getAddressBook(bookName);
 
-            if (!choice.equalsIgnoreCase("yes")) {
-                addMoreContacts = false;
+                    if (deleteBook == null) {
+                        System.out.println("Address Book not found!");
+                        break;
+                    }
+
+                    System.out.print("Enter First Name to delete: ");
+                    String deleteName = scanner.nextLine().trim();
+                    deleteBook.deleteContact(deleteName);
+                    break;
+
+                case 5:
+                    system.displayAddressBooks();
+                    break;
+
+                case 6:
+                    System.out.println("Exiting Address Book Program");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice!");
             }
         }
+    }
 
-        addressBook.displayAllContacts();
-        scanner.close();
+    /**
+     * Reads contact details from console.
+     */
+    private static Contact readContact(Scanner scanner) {
+
+        System.out.print("First Name: ");
+        String firstName = scanner.nextLine();
+
+        System.out.print("Last Name: ");
+        String lastName = scanner.nextLine();
+
+        System.out.print("Address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("City: ");
+        String city = scanner.nextLine();
+
+        System.out.print("State: ");
+        String state = scanner.nextLine();
+
+        System.out.print("Zip: ");
+        String zip = scanner.nextLine();
+
+        System.out.print("Phone Number: ");
+        String phone = scanner.nextLine();
+
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+
+        return new Contact(firstName, lastName, address, city, state, zip, phone, email);
     }
 }
