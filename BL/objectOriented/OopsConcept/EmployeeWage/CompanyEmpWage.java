@@ -1,21 +1,28 @@
 package objectOriented.OopsConcept.EmployeeWage;
 
-/**
- * CompanyEmpWage stores company-specific wage details
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class CompanyEmpWage {
 
-    public final String companyName;
+    public final String company;
     public final int wagePerHour;
-    public final int maxWorkingDays;
-    public final int maxWorkingHours;
-    public int totalWage;
+    public final int workingDays;
+    public final int maxHours;
 
-    public CompanyEmpWage(String companyName, int wagePerHour,
-                          int maxWorkingDays, int maxWorkingHours) {
-        this.companyName = companyName;
+    public int totalWage;
+    public List<Integer> dailyWages;
+
+    public CompanyEmpWage(String company, int wagePerHour,
+                          int workingDays, int maxHours) {
+        this.company = company;
         this.wagePerHour = wagePerHour;
-        this.maxWorkingDays = maxWorkingDays;
-        this.maxWorkingHours = maxWorkingHours;
+        this.workingDays = workingDays;
+        this.maxHours = maxHours;
+        this.dailyWages = new ArrayList<>();
+    }
+
+    public void setTotalWage(int totalWage) {
+        this.totalWage = totalWage;
     }
 }
