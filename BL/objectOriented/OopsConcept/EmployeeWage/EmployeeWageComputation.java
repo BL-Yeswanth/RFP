@@ -2,7 +2,7 @@ package objectOriented.OopsConcept.EmployeeWage;
 
 /**
  * Employee Wage Computation Program
- * UC9: Save Total Wage for Each Company
+ * UC10: Manage Employee Wage for Multiple Companies
  */
 public class EmployeeWageComputation {
 
@@ -10,19 +10,13 @@ public class EmployeeWageComputation {
 
         System.out.println("Welcome to Employee Wage Computation Program");
 
-        // UC9: Create company objects
-        EmpWageBuilder tcs = new EmpWageBuilder("TCS", 20, 20, 100);
-        EmpWageBuilder infosys = new EmpWageBuilder("Infosys", 25, 22, 120);
-        EmpWageBuilder wipro = new EmpWageBuilder("Wipro", 30, 20, 110);
+        EmpWageBuilder empWageBuilder = new EmpWageBuilder(3);
 
-        // Compute wages
-        tcs.computeEmployeeWage();
-        infosys.computeEmployeeWage();
-        wipro.computeEmployeeWage();
+        empWageBuilder.addCompanyEmpWage("TCS", 20, 20, 100);
+        empWageBuilder.addCompanyEmpWage("Infosys", 25, 22, 120);
+        empWageBuilder.addCompanyEmpWage("Wipro", 30, 20, 110);
 
-        // Display saved wages
-        tcs.displayTotalWage();
-        infosys.displayTotalWage();
-        wipro.displayTotalWage();
+        empWageBuilder.computeEmployeeWages();
+        empWageBuilder.displayTotalWages();
     }
 }
