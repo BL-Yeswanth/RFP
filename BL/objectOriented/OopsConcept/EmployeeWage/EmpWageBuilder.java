@@ -12,9 +12,9 @@ public class EmpWageBuilder implements IEmpWageBuilder {
     public void addCompanyEmpWage(String company, int wagePerHour,
                                   int workingDays, int maxHours) {
 
-        companyList.add(new CompanyEmpWage(
-                company, wagePerHour, workingDays, maxHours
-        ));
+        companyList.add(
+                new CompanyEmpWage(company, wagePerHour, workingDays, maxHours)
+        );
     }
 
     @Override
@@ -40,8 +40,8 @@ public class EmpWageBuilder implements IEmpWageBuilder {
                 totalDays < company.workingDays) {
 
             totalDays++;
-            int empType = random.nextInt(3); // 0,1,2
-            int empHours = 0;
+            int empType = random.nextInt(3);
+            int empHours;
 
             switch (empType) {
                 case 1:
@@ -68,11 +68,14 @@ public class EmpWageBuilder implements IEmpWageBuilder {
         company.setTotalWage(totalWage);
     }
 
+    /**
+     * UC14: Get total wage by company name
+     */
     @Override
     public int getTotalWage(String companyName) {
 
         for (CompanyEmpWage company : companyList) {
-            if (company.company.equals(companyName)) {
+            if (company.company.equalsIgnoreCase(companyName)) {
                 return company.totalWage;
             }
         }
