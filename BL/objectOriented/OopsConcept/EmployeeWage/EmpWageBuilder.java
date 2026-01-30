@@ -1,10 +1,12 @@
 package objectOriented.OopsConcept.EmployeeWage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * EmpWageBuilder implements EmpWageBuilderInterface
- * and manages wage computation for multiple companies
+ * UC12: Uses ArrayList to manage multiple companies
  */
 public class EmpWageBuilder implements EmpWageBuilderInterface {
 
@@ -12,26 +14,25 @@ public class EmpWageBuilder implements EmpWageBuilderInterface {
     private static final int IS_FULL_TIME = 1;
     private static final int IS_PART_TIME = 2;
 
-    private final CompanyEmpWage[] companies;
-    private int companyCount = 0;
+    private final List<CompanyEmpWage> companyList;
 
-    public EmpWageBuilder(int totalCompanies) {
-        companies = new CompanyEmpWage[totalCompanies];
+    public EmpWageBuilder() {
+        companyList = new ArrayList<>();
     }
 
     @Override
     public void addCompanyEmpWage(String companyName, int wagePerHour,
                                   int maxWorkingDays, int maxWorkingHours) {
 
-        companies[companyCount++] =
-                new CompanyEmpWage(companyName, wagePerHour,
-                        maxWorkingDays, maxWorkingHours);
+        companyList.add(new CompanyEmpWage(
+                companyName, wagePerHour,
+                maxWorkingDays, maxWorkingHours));
     }
 
     @Override
     public void computeEmployeeWages() {
-        for (int i = 0; i < companyCount; i++) {
-            computeEmployeeWage(companies[i]);
+        for (CompanyEmpWage company : companyList) {
+            computeEmployeeWage(company);
         }
     }
 
@@ -70,9 +71,9 @@ public class EmpWageBuilder implements EmpWageBuilderInterface {
 
     @Override
     public int getTotalWage(String companyName) {
-        for (int i = 0; i < companyCount; i++) {
-            if (companies[i].companyName.equalsIgnoreCase(companyName)) {
-                return companies[i].totalWage;
+        for (CompanyEmpWage company : companyList) {
+            if (company.companyName.equalsIgnoreCase(companyName)) {
+                return company.totalWage;
             }
         }
         return 0;
