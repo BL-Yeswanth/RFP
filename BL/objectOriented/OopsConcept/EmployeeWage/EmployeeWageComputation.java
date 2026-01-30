@@ -7,6 +7,7 @@ import java.util.Random;
  * UC1: Check Employee Attendance
  * UC2: Calculate Daily Employee Wage
  * UC3: Add Part Time Employee & Wage
+ * UC4: Solve using Switch Case Statement
  */
 public class EmployeeWageComputation {
 
@@ -24,19 +25,20 @@ public class EmployeeWageComputation {
         System.out.println("Welcome to Employee Wage Computation Program");
 
         Random random = new Random();
-        int employeeType = random.nextInt(3);
+        int employeeCheck = random.nextInt(3);
 
-        int workingHours = 0;
+        int workingHours;
 
-        switch (employeeType) {
+        // UC4: Switch Case for attendance
+        switch (employeeCheck) {
 
             case IS_FULL_TIME:
-                System.out.println("Employee is Full Time");
+                System.out.println("Employee is Present - Full Time");
                 workingHours = FULL_DAY_HOURS;
                 break;
 
             case IS_PART_TIME:
-                System.out.println("Employee is Part Time");
+                System.out.println("Employee is Present - Part Time");
                 workingHours = PART_TIME_HOURS;
                 break;
 
