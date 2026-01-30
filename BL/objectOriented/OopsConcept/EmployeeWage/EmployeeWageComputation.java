@@ -13,7 +13,9 @@ public class EmployeeWageComputation {
 
         empWageBuilder.computeEmpWage();
 
-        System.out.println("TCS Wage = " +
-                empWageBuilder.getTotalWage("TCS"));
+        System.out.println(
+                "Queried Wage for TCS = " +
+                        empWageBuilder.getTotalWage("TCS")
+        );
     }
 }
