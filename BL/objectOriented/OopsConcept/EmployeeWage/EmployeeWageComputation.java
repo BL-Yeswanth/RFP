@@ -2,7 +2,7 @@ package objectOriented.OopsConcept.EmployeeWage;
 
 /**
  * Employee Wage Computation Program
- * UC11: Interface Based Employee Wage Builder
+ * UC12: ArrayList based company management
  */
 public class EmployeeWageComputation {
 
@@ -11,7 +11,7 @@ public class EmployeeWageComputation {
         System.out.println("Welcome to Employee Wage Computation Program");
 
         EmpWageBuilderInterface empWageBuilder =
-                new EmpWageBuilder(3);
+                new EmpWageBuilder();
 
         empWageBuilder.addCompanyEmpWage("TCS", 20, 20, 100);
         empWageBuilder.addCompanyEmpWage("Infosys", 25, 22, 120);
