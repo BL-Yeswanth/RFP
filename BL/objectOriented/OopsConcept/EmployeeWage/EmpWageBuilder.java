@@ -3,9 +3,10 @@ package objectOriented.OopsConcept.EmployeeWage;
 import java.util.Random;
 
 /**
- * EmpWageBuilder manages wage computation for multiple companies
+ * EmpWageBuilder implements EmpWageBuilderInterface
+ * and manages wage computation for multiple companies
  */
-public class EmpWageBuilder {
+public class EmpWageBuilder implements EmpWageBuilderInterface {
 
     private static final int IS_ABSENT = 0;
     private static final int IS_FULL_TIME = 1;
@@ -18,6 +19,7 @@ public class EmpWageBuilder {
         companies = new CompanyEmpWage[totalCompanies];
     }
 
+    @Override
     public void addCompanyEmpWage(String companyName, int wagePerHour,
                                   int maxWorkingDays, int maxWorkingHours) {
 
@@ -26,6 +28,7 @@ public class EmpWageBuilder {
                         maxWorkingDays, maxWorkingHours);
     }
 
+    @Override
     public void computeEmployeeWages() {
         for (int i = 0; i < companyCount; i++) {
             computeEmployeeWage(companies[i]);
@@ -65,12 +68,13 @@ public class EmpWageBuilder {
         }
     }
 
-    public void displayTotalWages() {
+    @Override
+    public int getTotalWage(String companyName) {
         for (int i = 0; i < companyCount; i++) {
-            System.out.println(
-                    "Total Wage for " + companies[i].companyName +
-                            " : " + companies[i].totalWage
-            );
+            if (companies[i].companyName.equalsIgnoreCase(companyName)) {
+                return companies[i].totalWage;
+            }
         }
+        return 0;
     }
 }
