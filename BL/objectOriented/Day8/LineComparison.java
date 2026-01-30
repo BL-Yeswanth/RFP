@@ -1,4 +1,4 @@
-package Day8;
+package objectOriented.Day8;
 
 class Point {
     double x;

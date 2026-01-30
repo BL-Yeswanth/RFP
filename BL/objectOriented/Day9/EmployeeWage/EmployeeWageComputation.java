@@ -1,4 +1,4 @@
-package Day9.EmployeeWage;
+package objectOriented.Day9.EmployeeWage;
 
 public class EmployeeWageComputation {
 

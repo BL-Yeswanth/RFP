@@ -1,4 +1,4 @@
-package Day9.AddressBook;
+package objectOriented.Day9.AddressBook;
 
 public class Contact {
 
