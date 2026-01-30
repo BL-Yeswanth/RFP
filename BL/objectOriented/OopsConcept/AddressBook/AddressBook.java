@@ -11,12 +11,23 @@ public class AddressBook {
 
     private List<Contact> contacts = new ArrayList<>();
 
+    /**
+     * Adds a new contact to the address book.
+     *
+     * @param contact contact object
+     */
     public void addContact(Contact contact) {
         contacts.add(contact);
         System.out.println("\nContact added successfully!");
         contact.displayContact();
     }
 
+    /**
+     * Edits an existing contact using first name.
+     *
+     * @param firstName      first name of contact to edit
+     * @param updatedContact updated contact details
+     */
     public void editContact(String firstName, Contact updatedContact) {
 
         for (Contact contact : contacts) {
@@ -59,5 +70,24 @@ public class AddressBook {
         }
 
         System.out.println("\nContact not found with name: " + firstName);
+    }
+
+    /**
+     * Displays all contacts in the address book.
+     * (UC5 requirement)
+     */
+    public void displayAllContacts() {
+
+        if (contacts.isEmpty()) {
+            System.out.println("\nAddress Book is empty.");
+            return;
+        }
+
+        System.out.println("\n----- Address Book Contacts -----");
+
+        for (Contact contact : contacts) {
+            contact.displayContact();
+            System.out.println("--------------------------------");
+        }
     }
 }
