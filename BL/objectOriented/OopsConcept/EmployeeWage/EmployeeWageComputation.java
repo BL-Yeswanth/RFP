@@ -6,32 +6,46 @@ import java.util.Random;
  * Employee Wage Computation Program
  * UC1: Check Employee Attendance
  * UC2: Calculate Daily Employee Wage
+ * UC3: Add Part Time Employee & Wage
  */
 public class EmployeeWageComputation {
 
     // Constants
-    public static final int IS_PRESENT = 1;
     public static final int IS_ABSENT = 0;
+    public static final int IS_FULL_TIME = 1;
+    public static final int IS_PART_TIME = 2;
+
     public static final int WAGE_PER_HOUR = 20;
     public static final int FULL_DAY_HOURS = 8;
+    public static final int PART_TIME_HOURS = 8; // As per UC
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Employee Wage Computation Program");
 
         Random random = new Random();
-        int attendance = random.nextInt(2);
+        int employeeType = random.nextInt(3);
 
-        int dailyWage = 0;
+        int workingHours = 0;
 
-        if (attendance == IS_PRESENT) {
-            System.out.println("Employee is Present");
-            dailyWage = WAGE_PER_HOUR * FULL_DAY_HOURS;
-        } else {
-            System.out.println("Employee is Absent");
-            dailyWage = 0;
+        switch (employeeType) {
+
+            case IS_FULL_TIME:
+                System.out.println("Employee is Full Time");
+                workingHours = FULL_DAY_HOURS;
+                break;
+
+            case IS_PART_TIME:
+                System.out.println("Employee is Part Time");
+                workingHours = PART_TIME_HOURS;
+                break;
+
+            default:
+                System.out.println("Employee is Absent");
+                workingHours = 0;
         }
 
+        int dailyWage = workingHours * WAGE_PER_HOUR;
         System.out.println("Daily Employee Wage: " + dailyWage);
     }
 }
