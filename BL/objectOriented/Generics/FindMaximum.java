@@ -24,8 +24,12 @@ public class FindMaximum {
 
         // UC1 - TC1.1
         // Max number at 1st position
-        Integer result = findMaximum(30, 20, 10);
+        System.out.println("TC1.1 Result: " +
+                findMaximum(30, 20, 10));
 
-        System.out.println("TC1.1 Result: " + result);
+        // UC1 - TC1.2
+        // Max number at 2nd position
+        System.out.println("TC1.2 Result: " +
+                findMaximum(10, 30, 20));
     }
 }
