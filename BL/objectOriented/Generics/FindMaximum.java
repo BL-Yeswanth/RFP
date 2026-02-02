@@ -22,16 +22,10 @@ public class FindMaximum {
 
         System.out.println("Welcome to Find Maximum Problem using Generics");
 
-        // Test Case 1: Maximum at 1st position
-        System.out.println("Test Case 1 (Max at 1st): "
-                + findMaximum(30, 20, 10));
+        // UC1 - TC1.1
+        // Max number at 1st position
+        Integer result = findMaximum(30, 20, 10);
 
-        // Test Case 2: Maximum at 2nd position
-        System.out.println("Test Case 2 (Max at 2nd): "
-                + findMaximum(10, 30, 20));
-
-        // Test Case 3: Maximum at 3rd position
-        System.out.println("Test Case 3 (Max at 3rd): "
-                + findMaximum(10, 20, 30));
+        System.out.println("TC1.1 Result: " + result);
     }
 }
