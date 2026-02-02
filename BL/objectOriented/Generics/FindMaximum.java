@@ -2,7 +2,6 @@ package objectOriented.Generics;
 
 public class FindMaximum {
 
-    // Method to find maximum of three Integers using compareTo
     public static Integer findMaximum(Integer a, Integer b, Integer c) {
 
         Integer max = a;
@@ -24,12 +23,17 @@ public class FindMaximum {
 
         // UC1 - TC1.1
         // Max number at 1st position
-        System.out.println("TC1.1 Result: " +
-                findMaximum(30, 20, 10));
+        System.out.println("TC1.1 (Max at 1st Position): "
+                + findMaximum(30, 20, 10));
 
         // UC1 - TC1.2
         // Max number at 2nd position
-        System.out.println("TC1.2 Result: " +
-                findMaximum(10, 30, 20));
+        System.out.println("TC1.2 (Max at 2nd Position): "
+                + findMaximum(10, 30, 20));
+
+        // UC1 - TC1.3
+        // Max number at 3rd position
+        System.out.println("TC1.3 (Max at 3rd Position): "
+                + findMaximum(10, 20, 30));
     }
 }
