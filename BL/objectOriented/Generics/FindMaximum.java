@@ -1,76 +1,61 @@
 package objectOriented.Generics;
 
+import java.util.Arrays;
+
 public class FindMaximum<T extends Comparable<T>> {
 
-    private final T a;
-    private final T b;
-    private final T c;
+    private final T[] values;
 
     /**
-     * Parameterized constructor
+     * Parameterized constructor accepting more than three values.
      *
-     * @param a first value
-     * @param b second value
-     * @param c third value
+     * @param values variable number of values
      */
-    public FindMaximum(T a, T b, T c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+    @SafeVarargs
+    public FindMaximum(T... values) {
+        this.values = values;
     }
 
     /**
-     * Static generic method to find maximum
+     * Static generic method to find maximum using sorting.
+     *
+     * @param values variable number of values
+     * @param <T>    generic type
+     * @return maximum value
      */
-    public static <T extends Comparable<T>> T findMaximum(T a, T b, T c) {
+    @SafeVarargs
+    public static <T extends Comparable<T>> T findMaximum(T... values) {
 
-        T max = a;
-
-        if (b.compareTo(max) > 0) {
-            max = b;
-        }
-
-        if (c.compareTo(max) > 0) {
-            max = c;
-        }
-
-        return max;
+        Arrays.sort(values);
+        return values[values.length - 1];
     }
 
     /**
-     * Instance method that internally calls static method
+     * Instance method to find maximum.
      *
      * @return maximum value
      */
     public T testMaximum() {
-        return findMaximum(a, b, c);
+        return findMaximum(values);
     }
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Find Maximum Problem using Generics");
 
-        // ----------- Integer Test Cases using Generic Class -----------
-        System.out.println("\nInteger Test Cases");
-        FindMaximum<Integer> intTest1 = new FindMaximum<>(30, 20, 10);
-        System.out.println("Max (30, 20, 10): " + intTest1.testMaximum());
+        // -------- Integer Test Case --------
+        FindMaximum<Integer> intTest =
+                new FindMaximum<>(10, 40, 30, 20, 50);
+        System.out.println("Integer Max: " + intTest.testMaximum());
 
-        FindMaximum<Integer> intTest2 = new FindMaximum<>(10, 30, 20);
-        System.out.println("Max (10, 30, 20): " + intTest2.testMaximum());
-
-        FindMaximum<Integer> intTest3 = new FindMaximum<>(10, 20, 30);
-        System.out.println("Max (10, 20, 30): " + intTest3.testMaximum());
-
-        // ----------- Float Test Cases using Generic Class -----------
-        System.out.println("\nFloat Test Cases");
+        // -------- Float Test Case --------
         FindMaximum<Float> floatTest =
-                new FindMaximum<>(10.5f, 20.5f, 30.5f);
-        System.out.println("Max (10.5, 20.5, 30.5): " + floatTest.testMaximum());
+                new FindMaximum<>(12.5f, 9.5f, 22.5f, 18.5f);
+        System.out.println("Float Max: " + floatTest.testMaximum());
 
-        // ----------- String Test Cases using Generic Class -----------
-        System.out.println("\nString Test Cases");
+        // -------- String Test Case --------
         FindMaximum<String> stringTest =
-                new FindMaximum<>("Apple", "Peach", "Banana");
-        System.out.println("Max (Apple, Peach, Banana): " + stringTest.testMaximum());
+                new FindMaximum<>("Apple", "Banana", "Peach", "Mango");
+        System.out.println("String Max: " + stringTest.testMaximum());
     }
 }
