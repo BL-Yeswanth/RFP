@@ -1,8 +1,9 @@
 package objectOriented.DataStructure;
 
 /**
- * UC4: Insert 30 between 56 and 70
- * Final Sequence: 56 -> 30 -> 70
+ * UC6: Delete the last element in the LinkedList
+ * Initial Sequence: 56 -> 30 -> 70
+ * Final Sequence: 56 -> 30
  */
 public class DataStructureMain {
 
@@ -17,22 +18,58 @@ public class DataStructureMain {
         }
     }
 
+    // Head of Linked List
+    static Node head;
+
+    /**
+     * popLast method deletes the last element of the Linked List
+     */
+    public static void popLast() {
+        if (head == null) {
+            System.out.println("Linked List is empty");
+            return;
+        }
+
+        // If only one element exists
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node current = head;
+
+        // Traverse to second last node
+        while (current.next.next != null) {
+            current = current.next;
+        }
+
+        // Remove last node
+        current.next = null;
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to Data Structure Problems using Java Generics");
 
-        // Step 1: Create Linked List: 56 -> 70
-        Node head = new Node(56);
-        Node lastNode = new Node(70);
-        head.next = lastNode;
+        // Create Linked List: 56 -> 30 -> 70
+        head = new Node(56);
+        head.next = new Node(30);
+        head.next.next = new Node(70);
 
-        // Step 2: Insert 30 between 56 and 70
-        Node newNode = new Node(30);
-        newNode.next = head.next;
-        head.next = newNode;
+        System.out.print("Before popLast: ");
+        printList();
 
-        // Print Linked List
-        System.out.print("Linked List: ");
+        // Delete last element
+        popLast();
+
+        System.out.print("After popLast: ");
+        printList();
+    }
+
+    /**
+     * Print Linked List
+     */
+    public static void printList() {
         Node current = head;
         while (current != null) {
             System.out.print(current.data);
@@ -41,5 +78,6 @@ public class DataStructureMain {
             }
             current = current.next;
         }
+        System.out.println();
     }
 }
