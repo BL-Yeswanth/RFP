@@ -1,9 +1,9 @@
 package objectOriented.DataStructure;
 
 /**
- * UC5: Delete the first element in the LinkedList
+ * UC6: Delete the last element in the LinkedList
  * Initial Sequence: 56 -> 30 -> 70
- * Final Sequence: 30 -> 70
+ * Final Sequence: 56 -> 30
  */
 public class DataStructureMain {
 
@@ -22,14 +22,29 @@ public class DataStructureMain {
     static Node head;
 
     /**
-     * Pop method deletes the first element of the Linked List
+     * popLast method deletes the last element of the Linked List
      */
-    public static void pop() {
+    public static void popLast() {
         if (head == null) {
             System.out.println("Linked List is empty");
             return;
         }
-        head = head.next; // Move head to next node
+
+        // If only one element exists
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node current = head;
+
+        // Traverse to second last node
+        while (current.next.next != null) {
+            current = current.next;
+        }
+
+        // Remove last node
+        current.next = null;
     }
 
     public static void main(String[] args) {
@@ -41,13 +56,13 @@ public class DataStructureMain {
         head.next = new Node(30);
         head.next.next = new Node(70);
 
-        System.out.print("Before Pop: ");
+        System.out.print("Before popLast: ");
         printList();
 
-        // Delete first element
-        pop();
+        // Delete last element
+        popLast();
 
-        System.out.print("After Pop: ");
+        System.out.print("After popLast: ");
         printList();
     }
 
