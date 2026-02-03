@@ -2,12 +2,17 @@ package objectOriented.Generics;
 
 import java.util.Arrays;
 
+/**
+ * Generic class to find and print maximum values.
+ *
+ * @param <T> Generic type extending Comparable
+ */
 public class FindMaximum<T extends Comparable<T>> {
 
     private final T[] values;
 
     /**
-     * Parameterized constructor accepting more than three values.
+     * Parameterized constructor accepting multiple values.
      *
      * @param values variable number of values
      */
@@ -25,18 +30,29 @@ public class FindMaximum<T extends Comparable<T>> {
      */
     @SafeVarargs
     public static <T extends Comparable<T>> T findMaximum(T... values) {
-
         Arrays.sort(values);
         return values[values.length - 1];
     }
 
     /**
-     * Instance method to find maximum.
+     * Generic method to print maximum value.
+     *
+     * @param max maximum value
+     * @param <T> generic type
+     */
+    public static <T> void printMax(T max) {
+        System.out.println("Maximum Value: " + max);
+    }
+
+    /**
+     * Instance method that finds and prints maximum.
      *
      * @return maximum value
      */
     public T testMaximum() {
-        return findMaximum(values);
+        T max = findMaximum(values);
+        printMax(max);
+        return max;
     }
 
     public static void main(String[] args) {
@@ -46,16 +62,16 @@ public class FindMaximum<T extends Comparable<T>> {
         // -------- Integer Test Case --------
         FindMaximum<Integer> intTest =
                 new FindMaximum<>(10, 40, 30, 20, 50);
-        System.out.println("Integer Max: " + intTest.testMaximum());
+        intTest.testMaximum();
 
         // -------- Float Test Case --------
         FindMaximum<Float> floatTest =
                 new FindMaximum<>(12.5f, 9.5f, 22.5f, 18.5f);
-        System.out.println("Float Max: " + floatTest.testMaximum());
+        floatTest.testMaximum();
 
         // -------- String Test Case --------
         FindMaximum<String> stringTest =
                 new FindMaximum<>("Apple", "Banana", "Peach", "Mango");
-        System.out.println("String Max: " + stringTest.testMaximum());
+        stringTest.testMaximum();
     }
 }
