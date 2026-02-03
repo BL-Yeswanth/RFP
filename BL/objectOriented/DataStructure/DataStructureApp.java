@@ -3,70 +3,67 @@ package objectOriented.DataStructure;
 import java.util.LinkedList;
 
 
-public class DataStructureApp {
+public class DataStructureApp<T> {
 
-    // Generic Stack implemented using LinkedList
-    static class Stack<T> {
-        private LinkedList<T> list = new LinkedList<>();
+    // Queue implementation using LinkedList
+    private LinkedList<T> queue;
 
-        // Push element to top of stack
-        public void push(T data) {
-            list.addFirst(data);
-            System.out.println(data + " pushed to stack");
-        }
+    // Constructor
+    public DataStructureApp() {
+        queue = new LinkedList<>();
+    }
 
-        // Pop element from top of stack
-        public T pop() {
-            if (isEmpty()) {
-                System.out.println("Stack is empty!");
-                return null;
-            }
-            T data = list.removeFirst();
-            System.out.println(data + " popped from stack");
-            return data;
-        }
+    /**
+     * Enqueue operation: add element to the end of the queue
+     * @param element element to add
+     */
+    public void enqueue(T element) {
+        queue.addLast(element);
+        System.out.println("Enqueued: " + element);
+    }
 
-        // Peek element at top of stack
-        public T peek() {
-            if (isEmpty()) {
-                System.out.println("Stack is empty!");
-                return null;
-            }
-            return list.getFirst();
-        }
-
-        // Check if stack is empty
-        public boolean isEmpty() {
-            return list.isEmpty();
-        }
-
-        // Print current stack
-        public void printStack() {
-            System.out.println("Current Stack: " + list);
+    /**
+     * Dequeue operation: remove element from the beginning of the queue
+     * @return element removed, or null if queue is empty
+     */
+    public T dequeue() {
+        if (!queue.isEmpty()) {
+            T removed = queue.removeFirst();
+            System.out.println("Dequeued: " + removed);
+            return removed;
+        } else {
+            System.out.println("Queue is empty, cannot dequeue.");
+            return null;
         }
     }
 
+    /**
+     * Display current elements in the queue
+     */
+    public void displayQueue() {
+        System.out.println("Current Queue: " + queue);
+    }
+
+    /**
+     * Main method for demonstration
+     */
     public static void main(String[] args) {
+
         System.out.println("Welcome to Data Structure Problems using Java Generics");
 
-        // Create stack of integers
-        Stack<Integer> stack = new Stack<>();
+        // Using Integer Queue
+        DataStructureApp<Integer> queueApp = new DataStructureApp<>();
 
-        // Push elements as per UC2 sequence: 56, 30, 70
-        stack.push(56);
-        stack.push(30);
-        stack.push(70);
+        // UC2: Enqueue elements
+        queueApp.enqueue(10);
+        queueApp.enqueue(20);
+        queueApp.enqueue(30);
 
-        stack.printStack(); // Prints initial stack
+        // Display Queue
+        queueApp.displayQueue();  // Expected: [10, 20, 30]
 
-        // Peek top element
-        System.out.println("Top element is: " + stack.peek());
-
-        // Pop all elements till stack is empty
-        while (!stack.isEmpty()) {
-            stack.pop();
-        }
-
-        stack.printStack(); // Should be empty now
+        // UC4: Dequeue element from beginning
+        queueApp.dequeue();       // Expected Dequeue: 10
+        queueApp.displayQueue();  // Expected: [20, 30]
     }
 }
