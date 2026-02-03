@@ -1,7 +1,7 @@
 package objectOriented.DataStructure;
 
 /**
- * UC2: Create Linked List by adding 30 and 56 to 70
+ * UC3: Create Linked List by appending 30 and 70 to 56
  * Final Sequence: 56 -> 30 -> 70
  */
 public class DataStructureMain {
@@ -21,18 +21,16 @@ public class DataStructureMain {
 
         System.out.println("Welcome to Data Structure Problems using Java Generics");
 
-        // Step 1: Create first node with data 70
-        Node head = new Node(70);
+        // Step 1: Create first node with data 56
+        Node head = new Node(56);
 
-        // Step 2: Add 30 to the beginning
+        // Step 2: Append 30
         Node secondNode = new Node(30);
-        secondNode.next = head;
-        head = secondNode;
+        head.next = secondNode;
 
-        // Step 3: Add 56 to the beginning
-        Node thirdNode = new Node(56);
-        thirdNode.next = head;
-        head = thirdNode;
+        // Step 3: Append 70
+        Node thirdNode = new Node(70);
+        secondNode.next = thirdNode;
 
         // Print Linked List
         System.out.print("Linked List: ");
