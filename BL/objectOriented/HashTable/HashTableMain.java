@@ -1,6 +1,7 @@
 package objectOriented.HashTable;
 
 import java.util.LinkedList;
+import java.util.Iterator;
 
 public class HashTableMain {
 
@@ -42,6 +43,19 @@ public class HashTableMain {
             buckets[index].add(new MyMapNode(key, 1));
         }
 
+        void remove(String key) {
+            int index = getIndex(key);
+            Iterator<MyMapNode> iterator = buckets[index].iterator();
+
+            while (iterator.hasNext()) {
+                MyMapNode node = iterator.next();
+                if (node.key.equals(key)) {
+                    iterator.remove();
+                    return;
+                }
+            }
+        }
+
         void print() {
             for (LinkedList<MyMapNode> bucket : buckets) {
                 for (MyMapNode node : bucket) {
@@ -68,7 +82,12 @@ public class HashTableMain {
             hashTable.add(word);
         }
 
-        System.out.println("\nWord Frequency:");
+        System.out.println("\nBefore Removing 'avoidable':");
+        hashTable.print();
+
+        hashTable.remove("avoidable");
+
+        System.out.println("\nAfter Removing 'avoidable':");
         hashTable.print();
     }
 }
