@@ -59,6 +59,16 @@ public class BinarySearchTreeMain {
             return current;
         }
 
+        public int size() {
+            return sizeRecursively(root);
+        }
+
+        private int sizeRecursively(INode<K> node) {
+            if (node == null)
+                return 0;
+            return 1 + sizeRecursively(node.getLeft()) + sizeRecursively(node.getRight());
+        }
+
         public INode<K> getRoot() {
             return root;
         }
@@ -69,12 +79,15 @@ public class BinarySearchTreeMain {
         System.out.println("Welcome to Binary Search Tree (BST) Problems");
 
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+
         bst.add(56);
         bst.add(30);
         bst.add(70);
+        bst.add(22);
+        bst.add(40);
+        bst.add(60);
+        bst.add(95);
 
-        System.out.println("Root Node : " + bst.getRoot().getKey());
-        System.out.println("Left Child : " + bst.getRoot().getLeft().getKey());
-        System.out.println("Right Child : " + bst.getRoot().getRight().getKey());
+        System.out.println("Total Nodes in BST : " + bst.size());
     }
 }
