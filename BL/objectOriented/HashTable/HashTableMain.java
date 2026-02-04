@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 public class HashTableMain {
 
-    // Node for Key-Value pair
     static class MyMapNode {
         String key;
         int value;
@@ -15,9 +14,8 @@ public class HashTableMain {
         }
     }
 
-    // Hash Table using LinkedList
     static class MyHashTable {
-        private final int SIZE = 10;
+        private final int SIZE = 20;
         LinkedList<MyMapNode>[] buckets;
 
         @SuppressWarnings("unchecked")
@@ -34,6 +32,7 @@ public class HashTableMain {
 
         void add(String key) {
             int index = getIndex(key);
+
             for (MyMapNode node : buckets[index]) {
                 if (node.key.equals(key)) {
                     node.value++;
@@ -56,8 +55,12 @@ public class HashTableMain {
 
         System.out.println("Welcome to Hash Table Data Structure Problems using Java Generics");
 
-        String sentence = "To be or not to be";
-        String[] words = sentence.toLowerCase().split(" ");
+        String paragraph =
+                "Paranoids are not paranoid because they are paranoid but " +
+                        "because they keep putting themselves deliberately into " +
+                        "paranoid avoidable situations";
+
+        String[] words = paragraph.toLowerCase().split(" ");
 
         MyHashTable hashTable = new MyHashTable();
 
