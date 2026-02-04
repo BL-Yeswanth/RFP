@@ -69,8 +69,20 @@ public class BinarySearchTreeMain {
             return 1 + sizeRecursively(node.getLeft()) + sizeRecursively(node.getRight());
         }
 
-        public INode<K> getRoot() {
-            return root;
+        public boolean search(K key) {
+            return searchRecursively(root, key);
+        }
+
+        private boolean searchRecursively(INode<K> current, K key) {
+            if (current == null)
+                return false;
+
+            if (key.compareTo(current.getKey()) == 0)
+                return true;
+
+            return key.compareTo(current.getKey()) < 0
+                    ? searchRecursively(current.getLeft(), key)
+                    : searchRecursively(current.getRight(), key);
         }
     }
 
@@ -89,5 +101,6 @@ public class BinarySearchTreeMain {
         bst.add(95);
 
         System.out.println("Total Nodes in BST : " + bst.size());
+        System.out.println("Is 63 Present : " + bst.search(63));
     }
 }
