@@ -11,21 +11,12 @@ class Node<T> {
 class LinkedList<T> {
     Node<T> head;
 
-    // Add element at end
-    public void add(T data) {
+    // Add element at beginning
+    public void addFirst(T data) {
         Node<T> newNode = new Node<>(data);
 
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node<T> temp = head;
-
-            while (temp.next != null) {
-                temp = temp.next;
-            }
-
-            temp.next = newNode;
-        }
+        newNode.next = head;
+        head = newNode;
     }
 
     // Display Linked List
@@ -51,13 +42,16 @@ public class Main {
 
         LinkedList<Integer> list = new LinkedList<>();
 
-        // Adding elements
-        list.add(56);
-        list.add(30);
-        list.add(70);
+        // First create 70
+        list.addFirst(70);
 
-        // Display list
-        System.out.println("Simple Linked List:");
+        // Add 30 before 70
+        list.addFirst(30);
+
+        // Add 56 before 30
+        list.addFirst(56);
+
+        System.out.println("Linked List Sequence:");
         list.display();
     }
 }
