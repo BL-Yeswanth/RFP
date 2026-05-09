@@ -1,24 +1,23 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LinkedListTest {
+public class SortedLinkedListTest {
 
     @Test
-    public void givenLinkedList_WhenDeleted40_ShouldReturnSize3() {
+    public void givenNumbers_WhenAdded_ShouldSortAscending() {
 
-        LinkedList<Integer> list = new LinkedList<>();
+        SortedLinkedList<Integer> list =
+                new SortedLinkedList<>();
 
-        list.append(56);
-        list.append(30);
-        list.append(40);
-        list.append(70);
+        list.add(56);
+        list.add(30);
+        list.add(40);
+        list.add(70);
 
-        // Delete node 40
-        list.delete(40);
-
-        // Check size
-        int size = list.size();
-
-        Assert.assertEquals(3, size);
+        // Check head value
+        Assert.assertEquals(
+                Integer.valueOf(30),
+                list.head.data
+        );
     }
 }

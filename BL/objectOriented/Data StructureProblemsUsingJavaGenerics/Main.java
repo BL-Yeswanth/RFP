@@ -1,4 +1,4 @@
-class Node<T> {
+class Node<T extends Comparable<T>> {
 
     T data;
     Node<T> next;
@@ -9,70 +9,35 @@ class Node<T> {
     }
 }
 
-class LinkedList<T> {
+class SortedLinkedList<T extends Comparable<T>> {
 
     Node<T> head;
 
-    // Append elements
-    public void append(T data) {
+    // Add elements in sorted order
+    public void add(T data) {
 
         Node<T> newNode = new Node<>(data);
 
-        if (head == null) {
+        // Insert at beginning
+        if (head == null || data.compareTo(head.data) < 0) {
+
+            newNode.next = head;
             head = newNode;
             return;
         }
 
         Node<T> temp = head;
 
-        while (temp.next != null) {
+        // Find correct position
+        while (temp.next != null &&
+               data.compareTo(temp.next.data) > 0) {
+
             temp = temp.next;
         }
 
+        // Insert node
+        newNode.next = temp.next;
         temp.next = newNode;
-    }
-
-    // Delete node by value
-    public void delete(T key) {
-
-        // If list is empty
-        if (head == null) {
-            return;
-        }
-
-        // If head node contains key
-        if (head.data.equals(key)) {
-            head = head.next;
-            return;
-        }
-
-        Node<T> temp = head;
-
-        while (temp.next != null) {
-
-            if (temp.next.data.equals(key)) {
-
-                temp.next = temp.next.next;
-                return;
-            }
-
-            temp = temp.next;
-        }
-    }
-
-    // Size of Linked List
-    public int size() {
-
-        int count = 0;
-
-        Node<T> temp = head;
-
-        while (temp != null) {
-            count++;
-            temp = temp.next;
-        }
-
-        return count;
     }
 
     // Display Linked List
@@ -99,24 +64,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LinkedList<Integer> list = new LinkedList<>();
+        SortedLinkedList<Integer> list =
+                new SortedLinkedList<>();
 
-        // Create Linked List
-        list.append(56);
-        list.append(30);
-        list.append(40);
-        list.append(70);
+        // Add elements
+        list.add(56);
+        list.add(30);
+        list.add(40);
+        list.add(70);
 
-        System.out.println("Before Deletion:");
+        System.out.println("Sorted Linked List:");
         list.display();
-
-        // Delete node 40
-        list.delete(40);
-
-        System.out.println("After Deletion:");
-        list.display();
-
-        // Display size
-        System.out.println("Size of Linked List: " + list.size());
     }
 }
