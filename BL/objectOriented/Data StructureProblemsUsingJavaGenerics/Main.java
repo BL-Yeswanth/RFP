@@ -9,10 +9,12 @@ class Node<T> {
 }
 
 class LinkedList<T> {
+
     Node<T> head;
 
-    // Append node at end
+    // Append elements
     public void append(T data) {
+
         Node<T> newNode = new Node<>(data);
 
         if (head == null) {
@@ -29,28 +31,18 @@ class LinkedList<T> {
         temp.next = newNode;
     }
 
-    // Insert node after specific value
-    public void insertAfter(T previousData, T newData) {
+    // Pop first element
+    public void pop() {
 
-        Node<T> temp = head;
-
-        while (temp != null) {
-
-            if (temp.data.equals(previousData)) {
-
-                Node<T> newNode = new Node<>(newData);
-
-                newNode.next = temp.next;
-                temp.next = newNode;
-
-                return;
-            }
-
-            temp = temp.next;
+        if (head == null) {
+            System.out.println("Linked List is empty");
+            return;
         }
+
+        head = head.next;
     }
 
-    // Display linked list
+    // Display Linked List
     public void display() {
 
         Node<T> temp = head;
@@ -76,14 +68,18 @@ public class Main {
 
         LinkedList<Integer> list = new LinkedList<>();
 
-        // Create initial list
+        // Create Linked List
         list.append(56);
+        list.append(30);
         list.append(70);
 
-        // Insert 30 between 56 and 70
-        list.insertAfter(56, 30);
+        System.out.println("Before Pop:");
+        list.display();
 
-        System.out.println("Final Sequence:");
+        // Delete first element
+        list.pop();
+
+        System.out.println("After Pop:");
         list.display();
     }
 }
