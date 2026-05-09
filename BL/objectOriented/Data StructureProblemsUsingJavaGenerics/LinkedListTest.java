@@ -4,18 +4,21 @@ import org.junit.Test;
 public class LinkedListTest {
 
     @Test
-    public void givenLinkedList_WhenInserted40After30_ShouldReturnTrue() {
+    public void givenLinkedList_WhenDeleted40_ShouldReturnSize3() {
 
         LinkedList<Integer> list = new LinkedList<>();
 
         list.append(56);
         list.append(30);
+        list.append(40);
         list.append(70);
 
-        list.insertAfter(30, 40);
+        // Delete node 40
+        list.delete(40);
 
-        boolean result = list.search(40) != null;
+        // Check size
+        int size = list.size();
 
-        Assert.assertTrue(result);
+        Assert.assertEquals(3, size);
     }
 }

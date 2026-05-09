@@ -32,21 +32,47 @@ class LinkedList<T> {
         temp.next = newNode;
     }
 
-    // Search node
-    public boolean search(T key) {
+    // Delete node by value
+    public void delete(T key) {
+
+        // If list is empty
+        if (head == null) {
+            return;
+        }
+
+        // If head node contains key
+        if (head.data.equals(key)) {
+            head = head.next;
+            return;
+        }
 
         Node<T> temp = head;
 
-        while (temp != null) {
+        while (temp.next != null) {
 
-            if (temp.data.equals(key)) {
-                return true;
+            if (temp.next.data.equals(key)) {
+
+                temp.next = temp.next.next;
+                return;
             }
 
             temp = temp.next;
         }
+    }
 
-        return false;
+    // Size of Linked List
+    public int size() {
+
+        int count = 0;
+
+        Node<T> temp = head;
+
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        return count;
     }
 
     // Display Linked List
@@ -78,15 +104,19 @@ public class Main {
         // Create Linked List
         list.append(56);
         list.append(30);
+        list.append(40);
         list.append(70);
 
+        System.out.println("Before Deletion:");
         list.display();
 
-        // Search element
-        if (list.search(30)) {
-            System.out.println("Node with value 30 found");
-        } else {
-            System.out.println("Node not found");
-        }
+        // Delete node 40
+        list.delete(40);
+
+        System.out.println("After Deletion:");
+        list.display();
+
+        // Display size
+        System.out.println("Size of Linked List: " + list.size());
     }
 }
