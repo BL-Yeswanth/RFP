@@ -4,7 +4,7 @@ import org.junit.Test;
 public class LinkedListTest {
 
     @Test
-    public void given3Numbers_WhenSearched30_ShouldReturnTrue() {
+    public void givenLinkedList_WhenInserted40After30_ShouldReturnTrue() {
 
         LinkedList<Integer> list = new LinkedList<>();
 
@@ -12,7 +12,9 @@ public class LinkedListTest {
         list.append(30);
         list.append(70);
 
-        boolean result = list.search(30);
+        list.insertAfter(30, 40);
+
+        boolean result = list.search(40) != null;
 
         Assert.assertTrue(result);
     }
