@@ -32,30 +32,21 @@ class LinkedList<T> {
         temp.next = newNode;
     }
 
-    // Delete last element
-    public void popLast() {
-
-        // If list is empty
-        if (head == null) {
-            System.out.println("Linked List is empty");
-            return;
-        }
-
-        // If only one node exists
-        if (head.next == null) {
-            head = null;
-            return;
-        }
+    // Search node
+    public boolean search(T key) {
 
         Node<T> temp = head;
 
-        // Move until second last node
-        while (temp.next.next != null) {
+        while (temp != null) {
+
+            if (temp.data.equals(key)) {
+                return true;
+            }
+
             temp = temp.next;
         }
 
-        // Remove last node
-        temp.next = null;
+        return false;
     }
 
     // Display Linked List
@@ -89,13 +80,13 @@ public class Main {
         list.append(30);
         list.append(70);
 
-        System.out.println("Before popLast:");
         list.display();
 
-        // Delete last element
-        list.popLast();
-
-        System.out.println("After popLast:");
-        list.display();
+        // Search element
+        if (list.search(30)) {
+            System.out.println("Node with value 30 found");
+        } else {
+            System.out.println("Node not found");
+        }
     }
 }
