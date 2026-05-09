@@ -1,4 +1,5 @@
 class Node<T> {
+
     T data;
     Node<T> next;
 
@@ -31,15 +32,30 @@ class LinkedList<T> {
         temp.next = newNode;
     }
 
-    // Pop first element
-    public void pop() {
+    // Delete last element
+    public void popLast() {
 
+        // If list is empty
         if (head == null) {
             System.out.println("Linked List is empty");
             return;
         }
 
-        head = head.next;
+        // If only one node exists
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node<T> temp = head;
+
+        // Move until second last node
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+
+        // Remove last node
+        temp.next = null;
     }
 
     // Display Linked List
@@ -73,13 +89,13 @@ public class Main {
         list.append(30);
         list.append(70);
 
-        System.out.println("Before Pop:");
+        System.out.println("Before popLast:");
         list.display();
 
-        // Delete first element
-        list.pop();
+        // Delete last element
+        list.popLast();
 
-        System.out.println("After Pop:");
+        System.out.println("After popLast:");
         list.display();
     }
 }
