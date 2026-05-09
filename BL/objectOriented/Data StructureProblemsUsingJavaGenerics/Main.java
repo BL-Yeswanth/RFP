@@ -11,11 +11,10 @@ class Node<T> {
 class LinkedList<T> {
     Node<T> head;
 
-    // Append element at end
+    // Append node at end
     public void append(T data) {
         Node<T> newNode = new Node<>(data);
 
-        // If list is empty
         if (head == null) {
             head = newNode;
             return;
@@ -30,11 +29,34 @@ class LinkedList<T> {
         temp.next = newNode;
     }
 
-    // Display Linked List
-    public void display() {
+    // Insert node after specific value
+    public void insertAfter(T previousData, T newData) {
+
         Node<T> temp = head;
 
         while (temp != null) {
+
+            if (temp.data.equals(previousData)) {
+
+                Node<T> newNode = new Node<>(newData);
+
+                newNode.next = temp.next;
+                temp.next = newNode;
+
+                return;
+            }
+
+            temp = temp.next;
+        }
+    }
+
+    // Display linked list
+    public void display() {
+
+        Node<T> temp = head;
+
+        while (temp != null) {
+
             System.out.print(temp.data);
 
             if (temp.next != null) {
@@ -49,20 +71,19 @@ class LinkedList<T> {
 }
 
 public class Main {
+
     public static void main(String[] args) {
 
         LinkedList<Integer> list = new LinkedList<>();
 
-        // First create 56
+        // Create initial list
         list.append(56);
-
-        // Append 30 to 56
-        list.append(30);
-
-        // Append 70 to 30
         list.append(70);
 
-        System.out.println("Linked List Sequence:");
+        // Insert 30 between 56 and 70
+        list.insertAfter(56, 30);
+
+        System.out.println("Final Sequence:");
         list.display();
     }
 }
