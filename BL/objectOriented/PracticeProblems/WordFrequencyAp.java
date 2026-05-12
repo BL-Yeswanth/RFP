@@ -22,7 +22,7 @@ class MyLinkedList<K, V> {
 
         while (temp != null) {
 
-            // Update existing word frequency
+            // Update existing key
             if (temp.key.equals(key)) {
                 temp.value = value;
                 return;
@@ -56,7 +56,35 @@ class MyLinkedList<K, V> {
         return null;
     }
 
-    // Display linked list
+    // Remove node using key
+    public void remove(K key) {
+
+        // If list is empty
+        if (head == null) {
+            return;
+        }
+
+        // If head node contains key
+        if (head.key.equals(key)) {
+            head = head.next;
+            return;
+        }
+
+        MyMapNode<K, V> temp = head;
+
+        while (temp.next != null) {
+
+            if (temp.next.key.equals(key)) {
+
+                temp.next = temp.next.next;
+                return;
+            }
+
+            temp = temp.next;
+        }
+    }
+
+    // Display Linked List
     public void display() {
 
         MyMapNode<K, V> temp = head;
@@ -83,7 +111,7 @@ class MyHashTable<K, V> {
 
         table = new MyLinkedList[size];
 
-        // Create LinkedList for every index
+        // Initialize LinkedList for each index
         for (int i = 0; i < size; i++) {
             table[i] = new MyLinkedList<>();
         }
@@ -111,14 +139,24 @@ class MyHashTable<K, V> {
         return table[index].get(key);
     }
 
-    // Display hash table
+    // Remove word using key
+    public void remove(K key) {
+
+        int index = getIndex(key);
+
+        table[index].remove(key);
+    }
+
+    // Display Hash Table
     public void display() {
 
         for (int i = 0; i < size; i++) {
 
             if (table[i].head != null) {
 
-                System.out.println("Index " + i + ":");
+                System.out.println(
+                        "Index " + i + ":"
+                );
 
                 table[i].display();
 
@@ -156,7 +194,16 @@ public class WordFrequencyApp {
             }
         }
 
-        System.out.println("Word Frequencies:");
+        System.out.println("Before Removing 'avoidable':\n");
+
+        hashTable.display();
+
+        // Remove avoidable word
+        hashTable.remove("avoidable");
+
+        System.out.println(
+                "After Removing 'avoidable':\n"
+        );
 
         hashTable.display();
     }
