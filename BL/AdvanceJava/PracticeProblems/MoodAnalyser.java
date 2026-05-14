@@ -15,7 +15,15 @@ public class MoodAnalyser {
     }
 
     // Analyse Mood Method
-    public String analyseMood() {
+    public String analyseMood()
+            throws MoodAnalyserException {
+
+        if (message == null) {
+
+            throw new MoodAnalyserException(
+                    "Invalid Mood"
+            );
+        }
 
         if (message.contains("Sad")) {
 
