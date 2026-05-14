@@ -28,6 +28,14 @@ public class UserRegistration {
         return Pattern.matches(regex, email);
     }
 
+    // Validate Mobile Number
+    public static boolean validateMobileNumber(String mobile) {
+
+        String regex = "^[0-9]{2}\\s[0-9]{10}$";
+
+        return Pattern.matches(regex, mobile);
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -63,6 +71,17 @@ public class UserRegistration {
         }
         else {
             System.out.println("Invalid Email");
+        }
+
+        // Mobile Number
+        System.out.println("Enter Mobile Number:");
+        String mobile = sc.nextLine();
+
+        if (validateMobileNumber(mobile)) {
+            System.out.println("Valid Mobile Number");
+        }
+        else {
+            System.out.println("Invalid Mobile Number");
         }
 
         sc.close();
