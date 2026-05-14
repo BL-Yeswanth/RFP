@@ -20,4 +20,22 @@ public class MoodAnalyserTest {
                 mood
         );
     }
+
+    // Refactored TC 1.2
+    @Test
+    public void givenHappyMoodMessageInConstructor_ShouldReturnHAPPY() {
+
+        MoodAnalyser moodAnalyser =
+                new MoodAnalyser(
+                        "I am in Happy Mood"
+                );
+
+        String mood =
+                moodAnalyser.analyseMood();
+
+        Assert.assertEquals(
+                "HAPPY",
+                mood
+        );
+    }
 }
