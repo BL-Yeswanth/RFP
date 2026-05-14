@@ -36,11 +36,13 @@ public class UserRegistration {
         return Pattern.matches(regex, mobile);
     }
 
-    // Validate Password Rule 1
-    // Minimum 8 Characters
+    // Validate Password Rule 1 & Rule 2
+    // Rule 1 -> Minimum 8 Characters
+    // Rule 2 -> At least 1 Uppercase Letter
     public static boolean validatePassword(String password) {
 
-        String regex = "^.{8,}$";
+        String regex =
+                "^(?=.*[A-Z]).{8,}$";
 
         return Pattern.matches(regex, password);
     }
