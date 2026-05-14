@@ -7,69 +7,51 @@ public class MoodAnalyserTest {
     @Test
     public void givenSadMoodMessage_ShouldReturnSAD() {
 
-        try {
+        MoodAnalyser moodAnalyser =
+                new MoodAnalyser(
+                        "I am in Sad Mood"
+                );
 
-            MoodAnalyser moodAnalyser =
-                    new MoodAnalyser(
-                            "I am in Sad Mood"
-                    );
+        String mood =
+                moodAnalyser.analyseMood();
 
-            String mood =
-                    moodAnalyser.analyseMood();
-
-            Assert.assertEquals(
-                    "SAD",
-                    mood
-            );
-
-        } catch (MoodAnalyserException e) {
-
-            Assert.fail();
-        }
+        Assert.assertEquals(
+                "SAD",
+                mood
+        );
     }
 
     // TC 1.2
     @Test
     public void givenHappyMoodMessage_ShouldReturnHAPPY() {
 
-        try {
+        MoodAnalyser moodAnalyser =
+                new MoodAnalyser(
+                        "I am in Happy Mood"
+                );
 
-            MoodAnalyser moodAnalyser =
-                    new MoodAnalyser(
-                            "I am in Happy Mood"
-                    );
+        String mood =
+                moodAnalyser.analyseMood();
 
-            String mood =
-                    moodAnalyser.analyseMood();
-
-            Assert.assertEquals(
-                    "HAPPY",
-                    mood
-            );
-
-        } catch (MoodAnalyserException e) {
-
-            Assert.fail();
-        }
+        Assert.assertEquals(
+                "HAPPY",
+                mood
+        );
     }
 
-    // UC2 Test Case
+    // TC 2.1
     @Test
-    public void givenNullMood_ShouldThrowException() {
+    public void givenNullMood_ShouldReturnHAPPY() {
 
-        try {
+        MoodAnalyser moodAnalyser =
+                new MoodAnalyser(null);
 
-            MoodAnalyser moodAnalyser =
-                    new MoodAnalyser(null);
+        String mood =
+                moodAnalyser.analyseMood();
 
-            moodAnalyser.analyseMood();
-
-        } catch (MoodAnalyserException e) {
-
-            Assert.assertEquals(
-                    "Invalid Mood",
-                    e.getMessage()
-            );
-        }
+        Assert.assertEquals(
+                "HAPPY",
+                mood
+        );
     }
 }

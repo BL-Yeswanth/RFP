@@ -15,21 +15,20 @@ public class MoodAnalyser {
     }
 
     // Analyse Mood Method
-    public String analyseMood()
-            throws MoodAnalyserException {
+    public String analyseMood() {
 
-        if (message == null) {
+        try {
 
-            throw new MoodAnalyserException(
-                    "Invalid Mood"
-            );
-        }
+            if (message.contains("Sad")) {
 
-        if (message.contains("Sad")) {
+                return "SAD";
+            }
+            else {
 
-            return "SAD";
-        }
-        else {
+                return "HAPPY";
+            }
+
+        } catch (NullPointerException e) {
 
             return "HAPPY";
         }
