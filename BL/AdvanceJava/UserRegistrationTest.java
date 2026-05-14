@@ -5,96 +5,174 @@ public class UserRegistrationTest {
 
     // First Name Test
     @Test
-    public void givenFirstName_WhenProper_ShouldReturnTrue() {
+    public void givenFirstName_WhenValid_ShouldReturnTrue() {
 
-        boolean result =
-                UserRegistration.validateFirstName("Yaswanth");
+        try {
 
-        Assert.assertTrue(result);
+            boolean result =
+                    UserRegistration.validateFirstName("Yaswanth");
+
+            Assert.assertTrue(result);
+
+        } catch (UserRegistrationException e) {
+
+            Assert.fail();
+        }
     }
 
     @Test
-    public void givenFirstName_WhenImproper_ShouldReturnFalse() {
+    public void givenFirstName_WhenInvalid_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration.validateFirstName("ya");
+        try {
 
-        Assert.assertFalse(result);
+            UserRegistration.validateFirstName("ya");
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    "Invalid First Name",
+                    e.getMessage()
+            );
+        }
     }
 
     // Last Name Test
     @Test
-    public void givenLastName_WhenProper_ShouldReturnTrue() {
+    public void givenLastName_WhenValid_ShouldReturnTrue() {
 
-        boolean result =
-                UserRegistration.validateLastName("Polisetti");
+        try {
 
-        Assert.assertTrue(result);
+            boolean result =
+                    UserRegistration.validateLastName("Polisetti");
+
+            Assert.assertTrue(result);
+
+        } catch (UserRegistrationException e) {
+
+            Assert.fail();
+        }
     }
 
     @Test
-    public void givenLastName_WhenImproper_ShouldReturnFalse() {
+    public void givenLastName_WhenInvalid_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration.validateLastName("po");
+        try {
 
-        Assert.assertFalse(result);
+            UserRegistration.validateLastName("po");
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    "Invalid Last Name",
+                    e.getMessage()
+            );
+        }
     }
 
     // Email Test
     @Test
-    public void givenEmail_WhenProper_ShouldReturnTrue() {
+    public void givenEmail_WhenValid_ShouldReturnTrue() {
 
-        boolean result =
-                UserRegistration.validateEmail("abc@yahoo.com");
+        try {
 
-        Assert.assertTrue(result);
+            boolean result =
+                    UserRegistration.validateEmail(
+                            "abc@yahoo.com"
+                    );
+
+            Assert.assertTrue(result);
+
+        } catch (UserRegistrationException e) {
+
+            Assert.fail();
+        }
     }
 
     @Test
-    public void givenEmail_WhenImproper_ShouldReturnFalse() {
+    public void givenEmail_WhenInvalid_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration.validateEmail("abc@.com");
+        try {
 
-        Assert.assertFalse(result);
+            UserRegistration.validateEmail("abc@.com");
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    "Invalid Email",
+                    e.getMessage()
+            );
+        }
     }
 
     // Mobile Number Test
     @Test
-    public void givenMobile_WhenProper_ShouldReturnTrue() {
+    public void givenMobile_WhenValid_ShouldReturnTrue() {
 
-        boolean result =
-                UserRegistration.validateMobileNumber("91 9876543210");
+        try {
 
-        Assert.assertTrue(result);
+            boolean result =
+                    UserRegistration.validateMobileNumber(
+                            "91 9876543210"
+                    );
+
+            Assert.assertTrue(result);
+
+        } catch (UserRegistrationException e) {
+
+            Assert.fail();
+        }
     }
 
     @Test
-    public void givenMobile_WhenImproper_ShouldReturnFalse() {
+    public void givenMobile_WhenInvalid_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration.validateMobileNumber("9876543210");
+        try {
 
-        Assert.assertFalse(result);
+            UserRegistration.validateMobileNumber(
+                    "9876543210"
+            );
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    "Invalid Mobile Number",
+                    e.getMessage()
+            );
+        }
     }
 
     // Password Test
     @Test
-    public void givenPassword_WhenProper_ShouldReturnTrue() {
+    public void givenPassword_WhenValid_ShouldReturnTrue() {
 
-        boolean result =
-                UserRegistration.validatePassword("Password@1");
+        try {
 
-        Assert.assertTrue(result);
+            boolean result =
+                    UserRegistration.validatePassword(
+                            "Password@1"
+                    );
+
+            Assert.assertTrue(result);
+
+        } catch (UserRegistrationException e) {
+
+            Assert.fail();
+        }
     }
 
     @Test
-    public void givenPassword_WhenImproper_ShouldReturnFalse() {
+    public void givenPassword_WhenInvalid_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration.validatePassword("pass");
+        try {
 
-        Assert.assertFalse(result);
+            UserRegistration.validatePassword("pass");
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    "Invalid Password",
+                    e.getMessage()
+            );
+        }
     }
 }
