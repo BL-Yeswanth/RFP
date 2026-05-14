@@ -36,6 +36,15 @@ public class UserRegistration {
         return Pattern.matches(regex, mobile);
     }
 
+    // Validate Password Rule 1
+    // Minimum 8 Characters
+    public static boolean validatePassword(String password) {
+
+        String regex = "^.{8,}$";
+
+        return Pattern.matches(regex, password);
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -82,6 +91,17 @@ public class UserRegistration {
         }
         else {
             System.out.println("Invalid Mobile Number");
+        }
+
+        // Password
+        System.out.println("Enter Password:");
+        String password = sc.nextLine();
+
+        if (validatePassword(password)) {
+            System.out.println("Valid Password");
+        }
+        else {
+            System.out.println("Invalid Password");
         }
 
         sc.close();
