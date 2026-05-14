@@ -40,10 +40,11 @@ public class UserRegistration {
     // Rule 1 -> Minimum 8 Characters
     // Rule 2 -> At least 1 Uppercase Letter
     // Rule 3 -> At least 1 Numeric Number
+    // Rule 4 -> Exactly 1 Special Character
     public static boolean validatePassword(String password) {
 
         String regex =
-                "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
+                "^(?=.*[A-Z])(?=.*[0-9])(?=[^@#$%^&*!]*[@#$%^&*!][^@#$%^&*!]*$).{8,}$";
 
         return Pattern.matches(regex, password);
     }
