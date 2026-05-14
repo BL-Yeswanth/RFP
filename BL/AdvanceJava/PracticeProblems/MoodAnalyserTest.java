@@ -22,4 +22,24 @@ public class MoodAnalyserTest {
             );
         }
     }
+
+    // TC 3.2
+    @Test
+    public void givenEmptyMood_ShouldThrowMoodAnalysisException() {
+
+        try {
+
+            MoodAnalyser moodAnalyser =
+                    new MoodAnalyser("");
+
+            moodAnalyser.analyseMood();
+
+        } catch (MoodAnalyserException e) {
+
+            Assert.assertEquals(
+                    MoodAnalyserException.ExceptionType.ENTERED_EMPTY,
+                    e.type
+            );
+        }
+    }
 }
