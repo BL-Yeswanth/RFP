@@ -1,8 +1,14 @@
 public class MoodAnalyser {
 
+    // Message Field
     String message;
 
-    // Constructor
+    // Default Constructor
+    public MoodAnalyser() {
+
+    }
+
+    // Parameterized Constructor
     public MoodAnalyser(String message) {
 
         this.message = message;
