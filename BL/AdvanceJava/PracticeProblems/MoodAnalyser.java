@@ -15,9 +15,18 @@ public class MoodAnalyser {
     }
 
     // Analyse Mood Method
-    public String analyseMood() {
+    public String analyseMood()
+            throws MoodAnalyserException {
 
         try {
+
+            if (message.length() == 0) {
+
+                throw new MoodAnalyserException(
+                        MoodAnalyserException.ExceptionType.ENTERED_EMPTY,
+                        "Mood should not be Empty"
+                );
+            }
 
             if (message.contains("Sad")) {
 
@@ -30,7 +39,10 @@ public class MoodAnalyser {
 
         } catch (NullPointerException e) {
 
-            return "HAPPY";
+            throw new MoodAnalyserException(
+                    MoodAnalyserException.ExceptionType.ENTERED_NULL,
+                    "Mood should not be Null"
+            );
         }
     }
 }

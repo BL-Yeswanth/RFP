@@ -5,7 +5,8 @@ public class MoodAnalyserTest {
 
     // TC 1.1
     @Test
-    public void givenSadMoodMessage_ShouldReturnSAD() {
+    public void givenSadMood_ShouldReturnSAD()
+            throws MoodAnalyserException {
 
         MoodAnalyser moodAnalyser =
                 new MoodAnalyser(
@@ -23,7 +24,8 @@ public class MoodAnalyserTest {
 
     // TC 1.2
     @Test
-    public void givenHappyMoodMessage_ShouldReturnHAPPY() {
+    public void givenHappyMood_ShouldReturnHAPPY()
+            throws MoodAnalyserException {
 
         MoodAnalyser moodAnalyser =
                 new MoodAnalyser(
@@ -39,19 +41,43 @@ public class MoodAnalyserTest {
         );
     }
 
-    // TC 2.1
+    // UC3 Null Test
     @Test
-    public void givenNullMood_ShouldReturnHAPPY() {
+    public void givenNullMood_ShouldThrowException() {
 
-        MoodAnalyser moodAnalyser =
-                new MoodAnalyser(null);
+        try {
 
-        String mood =
-                moodAnalyser.analyseMood();
+            MoodAnalyser moodAnalyser =
+                    new MoodAnalyser(null);
 
-        Assert.assertEquals(
-                "HAPPY",
-                mood
-        );
+            moodAnalyser.analyseMood();
+
+        } catch (MoodAnalyserException e) {
+
+            Assert.assertEquals(
+                    MoodAnalyserException.ExceptionType.ENTERED_NULL,
+                    e.type
+            );
+        }
+    }
+
+    // UC3 Empty Test
+    @Test
+    public void givenEmptyMood_ShouldThrowException() {
+
+        try {
+
+            MoodAnalyser moodAnalyser =
+                    new MoodAnalyser("");
+
+            moodAnalyser.analyseMood();
+
+        } catch (MoodAnalyserException e) {
+
+            Assert.assertEquals(
+                    MoodAnalyserException.ExceptionType.ENTERED_EMPTY,
+                    e.type
+            );
+        }
     }
 }
