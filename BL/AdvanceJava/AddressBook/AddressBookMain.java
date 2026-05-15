@@ -99,8 +99,8 @@ public class AddressBookMain {
             }
         }
 
-        // Dictionary for City and Persons
-        Map<String, List<Contact>> cityMap =
+        // Count by City
+        Map<String, Long> cityCount =
                 addressBookMap.values()
                         .stream()
                         .flatMap(
@@ -109,12 +109,13 @@ public class AddressBookMain {
                         )
                         .collect(
                                 Collectors.groupingBy(
-                                        contact -> contact.city
+                                        contact -> contact.city,
+                                        Collectors.counting()
                                 )
                         );
 
-        // Dictionary for State and Persons
-        Map<String, List<Contact>> stateMap =
+        // Count by State
+        Map<String, Long> stateCount =
                 addressBookMap.values()
                         .stream()
                         .flatMap(
@@ -123,44 +124,33 @@ public class AddressBookMain {
                         )
                         .collect(
                                 Collectors.groupingBy(
-                                        contact -> contact.state
+                                        contact -> contact.state,
+                                        Collectors.counting()
                                 )
                         );
 
-        // View Persons by City
+        // Display City Count
         System.out.println(
-                "\nPersons By City:"
+                "\nContact Count By City:"
         );
 
-        cityMap.forEach(
-                (city, contacts) -> {
-
-                    System.out.println(
-                            "\nCity : " + city
-                    );
-
-                    contacts.forEach(
-                            Contact::displayContact
-                    );
-                }
+        cityCount.forEach(
+                (city, count) ->
+                        System.out.println(
+                                city + " : " + count
+                        )
         );
 
-        // View Persons by State
+        // Display State Count
         System.out.println(
-                "\nPersons By State:"
+                "\nContact Count By State:"
         );
 
-        stateMap.forEach(
-                (state, contacts) -> {
-
-                    System.out.println(
-                            "\nState : " + state
-                    );
-
-                    contacts.forEach(
-                            Contact::displayContact
-                    );
-                }
+        stateCount.forEach(
+                (state, count) ->
+                        System.out.println(
+                                state + " : " + count
+                        )
         );
 
         sc.close();

@@ -60,12 +60,4 @@ public class Contact {
 
         return Objects.hash(firstName, lastName);
     }
-
-    // Display Contact
-    public void displayContact() {
-
-        System.out.println(
-                firstName + " " + lastName
-        );
-    }
 }
