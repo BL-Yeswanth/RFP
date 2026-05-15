@@ -8,7 +8,7 @@ public class AddressBookMain {
 
         Scanner sc = new Scanner(System.in);
 
-        // Dictionary for Address Books
+        // Multiple Address Books
         Map<String, AddressBook> addressBookMap =
                 new HashMap<>();
 
@@ -16,9 +16,9 @@ public class AddressBookMain {
                 "Welcome to Address Book Program"
         );
 
+        // Create Address Books
         while (true) {
 
-            // Create Address Book
             System.out.println(
                     "\nEnter Address Book Name:"
             );
@@ -28,9 +28,9 @@ public class AddressBookMain {
             AddressBook addressBook =
                     new AddressBook();
 
+            // Add Contacts
             while (true) {
 
-                // Read Contact Details
                 System.out.println("\nEnter First Name:");
                 String firstName = sc.nextLine();
 
@@ -55,7 +55,7 @@ public class AddressBookMain {
                 System.out.println("Enter Email:");
                 String email = sc.nextLine();
 
-                // Create Contact Object
+                // Create Contact
                 Contact contact = new Contact(
                         firstName,
                         lastName,
@@ -70,7 +70,6 @@ public class AddressBookMain {
                 // Add Contact
                 addressBook.addContact(contact);
 
-                // Continue Adding Contacts
                 System.out.println(
                         "\nAdd Another Contact? (yes/no)"
                 );
@@ -89,7 +88,6 @@ public class AddressBookMain {
                     addressBook
             );
 
-            // Continue Adding Address Books
             System.out.println(
                     "\nAdd Another Address Book? (yes/no)"
             );
@@ -102,21 +100,53 @@ public class AddressBookMain {
             }
         }
 
-        // Display All Address Books
+        // Search by City
         System.out.println(
-                "\nAll Address Books:"
+                "\nEnter City Name to Search:"
         );
 
-        for (String bookName : addressBookMap.keySet()) {
+        String searchCity = sc.nextLine();
 
-            System.out.println(
-                    "\nAddress Book : " + bookName
-            );
+        System.out.println(
+                "\nPersons Found in City:"
+        );
 
-            addressBookMap
-                    .get(bookName)
-                    .displayContacts();
-        }
+        addressBookMap.values()
+                .stream()
+                .flatMap(
+                        book -> book.getContacts().stream()
+                )
+                .filter(
+                        contact ->
+                                contact.city.equalsIgnoreCase(searchCity)
+                )
+                .forEach(
+                        Contact::displayContact
+                );
+
+        // Search by State
+        System.out.println(
+                "\nEnter State Name to Search:"
+        );
+
+        String searchState = sc.nextLine();
+
+        System.out.println(
+                "\nPersons Found in State:"
+        );
+
+        addressBookMap.values()
+                .stream()
+                .flatMap(
+                        book -> book.getContacts().stream()
+                )
+                .filter(
+                        contact ->
+                                contact.state.equalsIgnoreCase(searchState)
+                )
+                .forEach(
+                        Contact::displayContact
+                );
 
         sc.close();
     }

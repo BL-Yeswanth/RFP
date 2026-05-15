@@ -58,10 +58,7 @@ public class Contact {
     @Override
     public int hashCode() {
 
-        return Objects.hash(
-                firstName,
-                lastName
-        );
+        return Objects.hash(firstName, lastName);
     }
 
     // Display Contact

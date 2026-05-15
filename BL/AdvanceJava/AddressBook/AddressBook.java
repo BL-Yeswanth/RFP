@@ -8,7 +8,6 @@ public class AddressBook {
     // Add Contact
     public void addContact(Contact contact) {
 
-        // Duplicate Check using Streams
         boolean isDuplicate =
                 contactList.stream()
                         .anyMatch(
@@ -19,7 +18,7 @@ public class AddressBook {
         if (isDuplicate) {
 
             System.out.println(
-                    "\nDuplicate Contact Found. Contact Not Added."
+                    "\nDuplicate Contact Found"
             );
 
             return;
@@ -30,6 +29,12 @@ public class AddressBook {
         System.out.println(
                 "\nContact Added Successfully"
         );
+    }
+
+    // Get Contact List
+    public ArrayList<Contact> getContacts() {
+
+        return contactList;
     }
 
     // Display Contacts
