@@ -1,6 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
@@ -100,53 +99,69 @@ public class AddressBookMain {
             }
         }
 
-        // Search by City
+        // Dictionary for City and Persons
+        Map<String, List<Contact>> cityMap =
+                addressBookMap.values()
+                        .stream()
+                        .flatMap(
+                                book ->
+                                        book.getContacts().stream()
+                        )
+                        .collect(
+                                Collectors.groupingBy(
+                                        contact -> contact.city
+                                )
+                        );
+
+        // Dictionary for State and Persons
+        Map<String, List<Contact>> stateMap =
+                addressBookMap.values()
+                        .stream()
+                        .flatMap(
+                                book ->
+                                        book.getContacts().stream()
+                        )
+                        .collect(
+                                Collectors.groupingBy(
+                                        contact -> contact.state
+                                )
+                        );
+
+        // View Persons by City
         System.out.println(
-                "\nEnter City Name to Search:"
+                "\nPersons By City:"
         );
 
-        String searchCity = sc.nextLine();
+        cityMap.forEach(
+                (city, contacts) -> {
 
-        System.out.println(
-                "\nPersons Found in City:"
+                    System.out.println(
+                            "\nCity : " + city
+                    );
+
+                    contacts.forEach(
+                            Contact::displayContact
+                    );
+                }
         );
 
-        addressBookMap.values()
-                .stream()
-                .flatMap(
-                        book -> book.getContacts().stream()
-                )
-                .filter(
-                        contact ->
-                                contact.city.equalsIgnoreCase(searchCity)
-                )
-                .forEach(
-                        Contact::displayContact
-                );
-
-        // Search by State
+        // View Persons by State
         System.out.println(
-                "\nEnter State Name to Search:"
+                "\nPersons By State:"
         );
 
-        String searchState = sc.nextLine();
+        stateMap.forEach(
+                (state, contacts) -> {
 
-        System.out.println(
-                "\nPersons Found in State:"
+                    System.out.println(
+                            "\nState : " + state
+                    );
+
+                    contacts.forEach(
+                            Contact::displayContact
+                    );
+                }
         );
-
-        addressBookMap.values()
-                .stream()
-                .flatMap(
-                        book -> book.getContacts().stream()
-                )
-                .filter(
-                        contact ->
-                                contact.state.equalsIgnoreCase(searchState)
-                )
-                .forEach(
-                        Contact::displayContact
-                );
 
         sc.close();
     }

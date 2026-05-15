@@ -32,7 +32,7 @@ public class Contact {
         this.email = email;
     }
 
-    // Override equals method
+    // Override equals
     @Override
     public boolean equals(Object obj) {
 
@@ -64,13 +64,8 @@ public class Contact {
     // Display Contact
     public void displayContact() {
 
-        System.out.println("First Name : " + firstName);
-        System.out.println("Last Name  : " + lastName);
-        System.out.println("Address    : " + address);
-        System.out.println("City       : " + city);
-        System.out.println("State      : " + state);
-        System.out.println("Zip        : " + zip);
-        System.out.println("Phone No   : " + phoneNumber);
-        System.out.println("Email      : " + email);
+        System.out.println(
+                firstName + " " + lastName
+        );
     }
 }

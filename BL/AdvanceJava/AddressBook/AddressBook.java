@@ -31,20 +31,9 @@ public class AddressBook {
         );
     }
 
-    // Get Contact List
+    // Get Contacts
     public ArrayList<Contact> getContacts() {
 
         return contactList;
-    }
-
-    // Display Contacts
-    public void displayContacts() {
-
-        for (Contact contact : contactList) {
-
-            System.out.println("\n----------------");
-
-            contact.displayContact();
-        }
     }
 }
