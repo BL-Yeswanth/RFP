@@ -6,71 +6,75 @@ public class AddressBookMain {
 
         Scanner sc = new Scanner(System.in);
 
+        AddressBook addressBook =
+                new AddressBook();
+
         System.out.println(
                 "Welcome to Address Book Program"
         );
 
-        // Enter Contact Details
-        System.out.println("\nEnter First Name:");
-        String firstName = sc.nextLine();
+        // Add Multiple Contacts
+        while (true) {
 
-        System.out.println("Enter Last Name:");
-        String lastName = sc.nextLine();
+            System.out.println("\nEnter First Name:");
+            String firstName = sc.nextLine();
 
-        System.out.println("Enter Address:");
-        String address = sc.nextLine();
+            System.out.println("Enter Last Name:");
+            String lastName = sc.nextLine();
 
-        System.out.println("Enter City:");
-        String city = sc.nextLine();
+            System.out.println("Enter Address:");
+            String address = sc.nextLine();
 
-        System.out.println("Enter State:");
-        String state = sc.nextLine();
+            System.out.println("Enter City:");
+            String city = sc.nextLine();
 
-        System.out.println("Enter Zip:");
-        String zip = sc.nextLine();
+            System.out.println("Enter State:");
+            String state = sc.nextLine();
 
-        System.out.println("Enter Phone Number:");
-        String phoneNumber = sc.nextLine();
+            System.out.println("Enter Zip:");
+            String zip = sc.nextLine();
 
-        System.out.println("Enter Email:");
-        String email = sc.nextLine();
+            System.out.println("Enter Phone Number:");
+            String phoneNumber = sc.nextLine();
 
-        // Create Contact
-        Contact contact = new Contact(
-                firstName,
-                lastName,
-                address,
-                city,
-                state,
-                zip,
-                phoneNumber,
-                email
-        );
+            System.out.println("Enter Email:");
+            String email = sc.nextLine();
 
-        // Create AddressBook
-        AddressBook addressBook =
-                new AddressBook();
+            // Create Contact
+            Contact contact = new Contact(
+                    firstName,
+                    lastName,
+                    address,
+                    city,
+                    state,
+                    zip,
+                    phoneNumber,
+                    email
+            );
 
-        // Add Contact
-        addressBook.addContact(contact);
+            // Add Contact
+            addressBook.addContact(contact);
 
-        // Display Contacts
-        System.out.println("\nSaved Contact:");
+            System.out.println(
+                    "\nContact Added Successfully"
+            );
 
-        addressBook.displayContacts();
+            // Ask User to Continue
+            System.out.println(
+                    "\nDo you want to add another contact? (yes/no)"
+            );
 
-        // Delete Contact
+            String choice = sc.nextLine();
+
+            if (choice.equalsIgnoreCase("no")) {
+
+                break;
+            }
+        }
+
+        // Display All Contacts
         System.out.println(
-                "\nEnter First Name to Delete Contact:"
-        );
-
-        String deleteName = sc.nextLine();
-
-        addressBook.deleteContact(deleteName);
-
-        // Display Remaining Contacts
-        System.out.println(
-                "\nRemaining Contact Details:"
+                "\nAll Contact Details:"
         );
 
         addressBook.displayContacts();
