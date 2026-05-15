@@ -1,26 +1,64 @@
+import java.util.Scanner;
+
 public class AddressBookMain {
 
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
 
         System.out.println(
                 "Welcome to Address Book Program"
         );
 
-        // Create Contact
+        // Read Contact Details
+        System.out.println("\nEnter First Name:");
+        String firstName = sc.nextLine();
+
+        System.out.println("Enter Last Name:");
+        String lastName = sc.nextLine();
+
+        System.out.println("Enter Address:");
+        String address = sc.nextLine();
+
+        System.out.println("Enter City:");
+        String city = sc.nextLine();
+
+        System.out.println("Enter State:");
+        String state = sc.nextLine();
+
+        System.out.println("Enter Zip:");
+        String zip = sc.nextLine();
+
+        System.out.println("Enter Phone Number:");
+        String phoneNumber = sc.nextLine();
+
+        System.out.println("Enter Email:");
+        String email = sc.nextLine();
+
+        // Create Contact Object
         Contact contact = new Contact(
-                "Yaswanth",
-                "Polisetti",
-                "ABC Street",
-                "Chennai",
-                "Tamil Nadu",
-                "600001",
-                "9876543210",
-                "yaswanth@gmail.com"
+                firstName,
+                lastName,
+                address,
+                city,
+                state,
+                zip,
+                phoneNumber,
+                email
         );
 
-        // Display Contact
-        System.out.println("\nContact Details:\n");
+        // Create AddressBook Object
+        AddressBook addressBook =
+                new AddressBook();
 
-        contact.displayContact();
+        // Add Contact
+        addressBook.addContact(contact);
+
+        // Display Contacts
+        System.out.println("\nContact Details:");
+
+        addressBook.displayContacts();
+
+        sc.close();
     }
 }
