@@ -59,18 +59,18 @@ public class AddressBookMain {
 
         addressBook.displayContacts();
 
-        // Edit Contact
+        // Delete Contact
         System.out.println(
-                "\nEnter First Name to Edit Contact:"
+                "\nEnter First Name to Delete Contact:"
         );
 
-        String editName = sc.nextLine();
+        String deleteName = sc.nextLine();
 
-        addressBook.editContact(editName);
+        addressBook.deleteContact(deleteName);
 
-        // Display Updated Contact
+        // Display Remaining Contacts
         System.out.println(
-                "\nUpdated Contact Details:"
+                "\nRemaining Contact Details:"
         );
 
         addressBook.displayContacts();
