@@ -10,7 +10,7 @@ public class AddressBookMain {
                 "Welcome to Address Book Program"
         );
 
-        // Read Contact Details
+        // Enter Contact Details
         System.out.println("\nEnter First Name:");
         String firstName = sc.nextLine();
 
@@ -35,7 +35,7 @@ public class AddressBookMain {
         System.out.println("Enter Email:");
         String email = sc.nextLine();
 
-        // Create Contact Object
+        // Create Contact
         Contact contact = new Contact(
                 firstName,
                 lastName,
@@ -47,7 +47,7 @@ public class AddressBookMain {
                 email
         );
 
-        // Create AddressBook Object
+        // Create AddressBook
         AddressBook addressBook =
                 new AddressBook();
 
@@ -55,7 +55,23 @@ public class AddressBookMain {
         addressBook.addContact(contact);
 
         // Display Contacts
-        System.out.println("\nContact Details:");
+        System.out.println("\nSaved Contact:");
+
+        addressBook.displayContacts();
+
+        // Edit Contact
+        System.out.println(
+                "\nEnter First Name to Edit Contact:"
+        );
+
+        String editName = sc.nextLine();
+
+        addressBook.editContact(editName);
+
+        // Display Updated Contact
+        System.out.println(
+                "\nUpdated Contact Details:"
+        );
 
         addressBook.displayContacts();
 
