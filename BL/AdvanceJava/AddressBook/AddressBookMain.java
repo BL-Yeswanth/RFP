@@ -18,7 +18,7 @@ public class AddressBookMain {
 
         while (true) {
 
-            // Create New Address Book
+            // Create Address Book
             System.out.println(
                     "\nEnter Address Book Name:"
             );
@@ -28,9 +28,9 @@ public class AddressBookMain {
             AddressBook addressBook =
                     new AddressBook();
 
-            // Add Contacts
             while (true) {
 
+                // Read Contact Details
                 System.out.println("\nEnter First Name:");
                 String firstName = sc.nextLine();
 
@@ -55,7 +55,7 @@ public class AddressBookMain {
                 System.out.println("Enter Email:");
                 String email = sc.nextLine();
 
-                // Create Contact
+                // Create Contact Object
                 Contact contact = new Contact(
                         firstName,
                         lastName,
@@ -69,10 +69,6 @@ public class AddressBookMain {
 
                 // Add Contact
                 addressBook.addContact(contact);
-
-                System.out.println(
-                        "\nContact Added Successfully"
-                );
 
                 // Continue Adding Contacts
                 System.out.println(
@@ -91,10 +87,6 @@ public class AddressBookMain {
             addressBookMap.put(
                     bookName,
                     addressBook
-            );
-
-            System.out.println(
-                    "\nAddress Book Added Successfully"
             );
 
             // Continue Adding Address Books
