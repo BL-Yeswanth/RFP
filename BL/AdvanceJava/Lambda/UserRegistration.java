@@ -54,12 +54,27 @@ public class UserRegistration {
         );
     }
 
+    // Validate Password
+    public static boolean validatePassword(
+            String password) {
+
+        // Minimum 8 Characters
+        String regex =
+                "^.{8,}$";
+
+        return Pattern.matches(
+                regex,
+                password
+        );
+    }
+
     public static void main(String[] args) {
 
         String firstName = "Yaswanth";
         String lastName = "Polisetti";
         String email = "abc.xyz@bl.co.in";
         String mobileNumber = "91 9919819801";
+        String password = "Password1@";
 
         boolean firstNameResult =
                 validateFirstName(firstName);
@@ -72,6 +87,9 @@ public class UserRegistration {
 
         boolean mobileResult =
                 validateMobileNumber(mobileNumber);
+
+        boolean passwordResult =
+                validatePassword(password);
 
         if (firstNameResult) {
 
@@ -122,6 +140,19 @@ public class UserRegistration {
 
             System.out.println(
                     "Invalid Mobile Number"
+            );
+        }
+
+        if (passwordResult) {
+
+            System.out.println(
+                    "Valid Password"
+            );
+
+        } else {
+
+            System.out.println(
+                    "Invalid Password"
             );
         }
     }
