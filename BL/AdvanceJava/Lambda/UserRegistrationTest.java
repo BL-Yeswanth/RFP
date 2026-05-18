@@ -3,121 +3,110 @@ import org.junit.Test;
 
 public class UserRegistrationTest {
 
-    // Happy Test Case - First Name
+    // First Name Test
     @Test
-    public void givenValidFirstName_ShouldReturnTrue() {
+    public void givenInvalidFirstName_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration
-                        .validateFirstName("Yaswanth");
+        try {
 
-        Assert.assertTrue(result);
+            UserRegistration
+                    .validateFirstName("yas");
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    UserRegistrationException
+                            .ExceptionType
+                            .INVALID_FIRST_NAME,
+
+                    e.type
+            );
+        }
     }
 
-    // Sad Test Case - First Name
+    // Last Name Test
     @Test
-    public void givenInvalidFirstName_ShouldReturnFalse() {
+    public void givenInvalidLastName_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration
-                        .validateFirstName("yaswanth");
+        try {
 
-        Assert.assertFalse(result);
+            UserRegistration
+                    .validateLastName("po");
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    UserRegistrationException
+                            .ExceptionType
+                            .INVALID_LAST_NAME,
+
+                    e.type
+            );
+        }
     }
 
-    // Happy Test Case - Last Name
+    // Email Test
     @Test
-    public void givenValidLastName_ShouldReturnTrue() {
+    public void givenInvalidEmail_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration
-                        .validateLastName("Polisetti");
+        try {
 
-        Assert.assertTrue(result);
+            UserRegistration
+                    .validateEmail("abc@.com");
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    UserRegistrationException
+                            .ExceptionType
+                            .INVALID_EMAIL,
+
+                    e.type
+            );
+        }
     }
 
-    // Sad Test Case - Last Name
+    // Mobile Number Test
     @Test
-    public void givenInvalidLastName_ShouldReturnFalse() {
+    public void givenInvalidMobile_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration
-                        .validateLastName("po");
+        try {
 
-        Assert.assertFalse(result);
+            UserRegistration
+                    .validateMobileNumber(
+                            "919919819801"
+                    );
+
+        } catch (UserRegistrationException e) {
+
+            Assert.assertEquals(
+                    UserRegistrationException
+                            .ExceptionType
+                            .INVALID_MOBILE_NUMBER,
+
+                    e.type
+            );
+        }
     }
 
-    // Happy Test Case - Email
+    // Password Test
     @Test
-    public void givenValidEmail_ShouldReturnTrue() {
+    public void givenInvalidPassword_ShouldThrowException() {
 
-        boolean result =
-                UserRegistration
-                        .validateEmail("abc.xyz@bl.co.in");
+        try {
 
-        Assert.assertTrue(result);
-    }
+            UserRegistration
+                    .validatePassword("pass");
 
-    // Sad Test Case - Email
-    @Test
-    public void givenInvalidEmail_ShouldReturnFalse() {
+        } catch (UserRegistrationException e) {
 
-        boolean result =
-                UserRegistration
-                        .validateEmail("abc@.com");
+            Assert.assertEquals(
+                    UserRegistrationException
+                            .ExceptionType
+                            .INVALID_PASSWORD,
 
-        Assert.assertFalse(result);
-    }
-
-    // Happy Test Case - Mobile Number
-    @Test
-    public void givenValidMobileNumber_ShouldReturnTrue() {
-
-        boolean result =
-                UserRegistration
-                        .validateMobileNumber(
-                                "91 9919819801"
-                        );
-
-        Assert.assertTrue(result);
-    }
-
-    // Sad Test Case - Mobile Number
-    @Test
-    public void givenInvalidMobileNumber_ShouldReturnFalse() {
-
-        boolean result =
-                UserRegistration
-                        .validateMobileNumber(
-                                "919919819801"
-                        );
-
-        Assert.assertFalse(result);
-    }
-
-    // Happy Test Case - Password
-    @Test
-    public void givenValidPassword_ShouldReturnTrue() {
-
-        boolean result =
-                UserRegistration
-                        .validatePassword(
-                                "Password1@"
-                        );
-
-        Assert.assertTrue(result);
-    }
-
-    // Sad Test Case - Password
-    @Test
-    public void givenInvalidPassword_ShouldReturnFalse() {
-
-        boolean result =
-                UserRegistration
-                        .validatePassword(
-                                "pass"
-                        );
-
-        Assert.assertFalse(result);
+                    e.type
+            );
+        }
     }
 }
