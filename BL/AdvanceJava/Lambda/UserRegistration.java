@@ -41,11 +41,25 @@ public class UserRegistration {
         );
     }
 
+    // Validate Mobile Number
+    public static boolean validateMobileNumber(
+            String mobileNumber) {
+
+        String regex =
+                "^[0-9]{2}\\s[0-9]{10}$";
+
+        return Pattern.matches(
+                regex,
+                mobileNumber
+        );
+    }
+
     public static void main(String[] args) {
 
         String firstName = "Yaswanth";
         String lastName = "Polisetti";
         String email = "abc.xyz@bl.co.in";
+        String mobileNumber = "91 9919819801";
 
         boolean firstNameResult =
                 validateFirstName(firstName);
@@ -55,6 +69,9 @@ public class UserRegistration {
 
         boolean emailResult =
                 validateEmail(email);
+
+        boolean mobileResult =
+                validateMobileNumber(mobileNumber);
 
         if (firstNameResult) {
 
@@ -92,6 +109,19 @@ public class UserRegistration {
 
             System.out.println(
                     "Invalid Email"
+            );
+        }
+
+        if (mobileResult) {
+
+            System.out.println(
+                    "Valid Mobile Number"
+            );
+
+        } else {
+
+            System.out.println(
+                    "Invalid Mobile Number"
             );
         }
     }
