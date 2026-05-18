@@ -9,10 +9,7 @@ public class UserRegistration {
         String regex =
                 "^[A-Z][a-zA-Z]{2,}$";
 
-        return Pattern.matches(
-                regex,
-                firstName
-        );
+        return Pattern.matches(regex, firstName);
     }
 
     // Validate Last Name
@@ -22,10 +19,7 @@ public class UserRegistration {
         String regex =
                 "^[A-Z][a-zA-Z]{2,}$";
 
-        return Pattern.matches(
-                regex,
-                lastName
-        );
+        return Pattern.matches(regex, lastName);
     }
 
     // Validate Email
@@ -35,10 +29,7 @@ public class UserRegistration {
         String regex =
                 "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)?@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?$";
 
-        return Pattern.matches(
-                regex,
-                email
-        );
+        return Pattern.matches(regex, email);
     }
 
     // Validate Mobile Number
@@ -48,118 +39,90 @@ public class UserRegistration {
         String regex =
                 "^[0-9]{2}\\s[0-9]{10}$";
 
-        return Pattern.matches(
-                regex,
-                mobileNumber
-        );
+        return Pattern.matches(regex, mobileNumber);
     }
 
     // Validate Password
     public static boolean validatePassword(
             String password) {
 
-        /*
-         Rule 1 -> Minimum 8 Characters
-         Rule 2 -> At least 1 Upper Case
-         Rule 3 -> At least 1 Numeric Number
-         Rule 4 -> Exactly 1 Special Character
-        */
-
         String regex =
                 "^(?=.*[A-Z])(?=.*[0-9])(?=[^@#$%^&*!]*[@#$%^&*!][^@#$%^&*!]*$).{8,}$";
 
-        return Pattern.matches(
-                regex,
-                password
-        );
+        return Pattern.matches(regex, password);
     }
 
     public static void main(String[] args) {
 
-        String firstName = "Yaswanth";
-        String lastName = "Polisetti";
-        String email = "abc.xyz@bl.co.in";
-        String mobileNumber = "91 9919819801";
-        String password = "Password1@";
+        // Email Samples
+        String[] validEmails = {
 
-        boolean firstNameResult =
-                validateFirstName(firstName);
+                "abc@yahoo.com",
+                "abc-100@yahoo.com",
+                "abc.100@yahoo.com",
+                "abc111@abc.com",
+                "abc-100@abc.net",
+                "abc.100@abc.com.au",
+                "abc@1.com",
+                "abc@gmail.com.com",
+                "abc+100@gmail.com"
+        };
 
-        boolean lastNameResult =
-                validateLastName(lastName);
+        String[] invalidEmails = {
 
-        boolean emailResult =
-                validateEmail(email);
+                "abc",
+                "abc@.com.my",
+                "abc123@gmail.a",
+                "abc123@.com",
+                "abc123@.com.com",
+                ".abc@abc.com",
+                "abc()*@gmail.com",
+                "abc@%*.com",
+                "abc..2002@gmail.com",
+                "abc.@gmail.com",
+                "abc@abc@gmail.com",
+                "abc@gmail.com.1a",
+                "abc@gmail.com.aa.au"
+        };
 
-        boolean mobileResult =
-                validateMobileNumber(mobileNumber);
+        System.out.println(
+                "Valid Email Samples:"
+        );
 
-        boolean passwordResult =
-                validatePassword(password);
+        for (String email : validEmails) {
 
-        if (firstNameResult) {
+            if (validateEmail(email)) {
 
-            System.out.println(
-                    "Valid First Name"
-            );
+                System.out.println(
+                        email + " -> Valid"
+                );
 
-        } else {
+            } else {
 
-            System.out.println(
-                    "Invalid First Name"
-            );
+                System.out.println(
+                        email + " -> Invalid"
+                );
+            }
         }
 
-        if (lastNameResult) {
+        System.out.println(
+                "\nInvalid Email Samples:"
+        );
 
-            System.out.println(
-                    "Valid Last Name"
-            );
+        for (String email : invalidEmails) {
 
-        } else {
+            if (validateEmail(email)) {
 
-            System.out.println(
-                    "Invalid Last Name"
-            );
-        }
+                System.out.println(
+                        email + " -> Valid"
+                );
 
-        if (emailResult) {
+            } else {
 
-            System.out.println(
-                    "Valid Email"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Invalid Email"
-            );
-        }
-
-        if (mobileResult) {
-
-            System.out.println(
-                    "Valid Mobile Number"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Invalid Mobile Number"
-            );
-        }
-
-        if (passwordResult) {
-
-            System.out.println(
-                    "Valid Password"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Invalid Password"
-            );
+                System.out.println(
+                        email + " -> Invalid"
+                );
+            }
         }
     }
 }
