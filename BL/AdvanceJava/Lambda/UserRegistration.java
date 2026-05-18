@@ -61,10 +61,11 @@ public class UserRegistration {
         /*
          Rule 1 -> Minimum 8 Characters
          Rule 2 -> At least 1 Upper Case
+         Rule 3 -> At least 1 Numeric Number
         */
 
         String regex =
-                "^(?=.*[A-Z]).{8,}$";
+                "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
 
         return Pattern.matches(
                 regex,
@@ -78,7 +79,7 @@ public class UserRegistration {
         String lastName = "Polisetti";
         String email = "abc.xyz@bl.co.in";
         String mobileNumber = "91 9919819801";
-        String password = "Password";
+        String password = "Password1";
 
         boolean firstNameResult =
                 validateFirstName(firstName);
