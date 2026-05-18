@@ -58,9 +58,13 @@ public class UserRegistration {
     public static boolean validatePassword(
             String password) {
 
-        // Minimum 8 Characters
+        /*
+         Rule 1 -> Minimum 8 Characters
+         Rule 2 -> At least 1 Upper Case
+        */
+
         String regex =
-                "^.{8,}$";
+                "^(?=.*[A-Z]).{8,}$";
 
         return Pattern.matches(
                 regex,
@@ -74,7 +78,7 @@ public class UserRegistration {
         String lastName = "Polisetti";
         String email = "abc.xyz@bl.co.in";
         String mobileNumber = "91 9919819801";
-        String password = "Password1@";
+        String password = "Password";
 
         boolean firstNameResult =
                 validateFirstName(firstName);
