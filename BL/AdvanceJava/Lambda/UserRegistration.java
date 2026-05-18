@@ -15,14 +15,31 @@ public class UserRegistration {
         );
     }
 
+    // Validate Last Name
+    public static boolean validateLastName(
+            String lastName) {
+
+        String regex =
+                "^[A-Z][a-zA-Z]{2,}$";
+
+        return Pattern.matches(
+                regex,
+                lastName
+        );
+    }
+
     public static void main(String[] args) {
 
         String firstName = "Yaswanth";
+        String lastName = "Polisetti";
 
-        boolean result =
+        boolean firstNameResult =
                 validateFirstName(firstName);
 
-        if (result) {
+        boolean lastNameResult =
+                validateLastName(lastName);
+
+        if (firstNameResult) {
 
             System.out.println(
                     "Valid First Name"
@@ -32,6 +49,19 @@ public class UserRegistration {
 
             System.out.println(
                     "Invalid First Name"
+            );
+        }
+
+        if (lastNameResult) {
+
+            System.out.println(
+                    "Valid Last Name"
+            );
+
+        } else {
+
+            System.out.println(
+                    "Invalid Last Name"
             );
         }
     }
