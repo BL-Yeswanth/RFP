@@ -17,7 +17,7 @@ public class EmployeePayrollService {
         employeeList.add(employee);
     }
 
-    // Write Employee Payroll to File
+    // Write Employee Payroll To File
     public void writeEmployeePayrollToFile(
             String fileName) {
 
@@ -49,7 +49,40 @@ public class EmployeePayrollService {
         }
     }
 
-    // Count Number Of Entries In File
+    // Print Employee Payroll From File
+    public void printEmployeePayroll(
+            String fileName) {
+
+        try {
+
+            BufferedReader reader =
+                    new BufferedReader(
+                            new FileReader(fileName)
+                    );
+
+            String line;
+
+            System.out.println(
+                    "\nEmployee Payroll Details:"
+            );
+
+            while ((line = reader.readLine())
+                    != null) {
+
+                System.out.println(line);
+            }
+
+            reader.close();
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    e.getMessage()
+            );
+        }
+    }
+
+    // Count Entries In File
     public int countEntries(
             String fileName) {
 
@@ -104,11 +137,16 @@ public class EmployeePayrollService {
 
         service.addEmployee(employee2);
 
-        // Write To File
         String fileName =
                 "employee_payroll.txt";
 
+        // Write To File
         service.writeEmployeePayrollToFile(
+                fileName
+        );
+
+        // Print Payroll
+        service.printEmployeePayroll(
                 fileName
         );
 
@@ -119,7 +157,7 @@ public class EmployeePayrollService {
                 );
 
         System.out.println(
-                "Number Of Entries In File : "
+                "\nNumber Of Entries In File : "
                         + entries
         );
     }
