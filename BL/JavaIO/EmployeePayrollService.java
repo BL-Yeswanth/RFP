@@ -49,40 +49,7 @@ public class EmployeePayrollService {
         }
     }
 
-    // Print Employee Payroll From File
-    public void printEmployeePayroll(
-            String fileName) {
-
-        try {
-
-            BufferedReader reader =
-                    new BufferedReader(
-                            new FileReader(fileName)
-                    );
-
-            String line;
-
-            System.out.println(
-                    "\nEmployee Payroll Details:"
-            );
-
-            while ((line = reader.readLine())
-                    != null) {
-
-                System.out.println(line);
-            }
-
-            reader.close();
-
-        } catch (IOException e) {
-
-            System.out.println(
-                    e.getMessage()
-            );
-        }
-    }
-
-    // Count Entries In File
+    // Count Number Of Entries
     public int countEntries(
             String fileName) {
 
@@ -145,11 +112,6 @@ public class EmployeePayrollService {
                 fileName
         );
 
-        // Print Payroll
-        service.printEmployeePayroll(
-                fileName
-        );
-
         // Count Entries
         int entries =
                 service.countEntries(
@@ -157,7 +119,7 @@ public class EmployeePayrollService {
                 );
 
         System.out.println(
-                "\nNumber Of Entries In File : "
+                "Number Of Entries In File : "
                         + entries
         );
     }

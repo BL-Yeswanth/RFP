@@ -15,7 +15,7 @@ public class EmployeePayroll {
         this.salary = salary;
     }
 
-    // Convert Object to String
+    // Convert Object To String
     @Override
     public String toString() {
 
