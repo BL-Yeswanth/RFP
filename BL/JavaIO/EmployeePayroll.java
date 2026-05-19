@@ -15,19 +15,14 @@ public class EmployeePayroll {
         this.salary = salary;
     }
 
-    // Display Employee Details
-    public void displayEmployeeDetails() {
+    // Convert Object to String
+    @Override
+    public String toString() {
 
-        System.out.println(
-                "Employee Id : " + id
-        );
-
-        System.out.println(
-                "Employee Name : " + name
-        );
-
-        System.out.println(
-                "Employee Salary : " + salary
-        );
+        return id
+                + " "
+                + name
+                + " "
+                + salary;
     }
 }

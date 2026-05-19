@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.ArrayList;
 
 public class EmployeePayrollService {
@@ -12,20 +17,66 @@ public class EmployeePayrollService {
         employeeList.add(employee);
     }
 
-    // Write Employee Payroll to Console
-    public void writeEmployeePayroll() {
+    // Write Employee Payroll to File
+    public void writeEmployeePayrollToFile(
+            String fileName) {
 
-        System.out.println(
-                "Employee Payroll Details"
-        );
+        try {
 
-        for (EmployeePayroll employee
-                : employeeList) {
+            FileWriter writer =
+                    new FileWriter(fileName);
 
-            employee.displayEmployeeDetails();
+            for (EmployeePayroll employee
+                    : employeeList) {
 
-            System.out.println();
+                writer.write(
+                        employee.toString()
+                                + "\n"
+                );
+            }
+
+            writer.close();
+
+            System.out.println(
+                    "Employee Payroll Written To File"
+            );
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    e.getMessage()
+            );
         }
+    }
+
+    // Count Number Of Entries In File
+    public int countEntries(
+            String fileName) {
+
+        int count = 0;
+
+        try {
+
+            BufferedReader reader =
+                    new BufferedReader(
+                            new FileReader(fileName)
+                    );
+
+            while (reader.readLine() != null) {
+
+                count++;
+            }
+
+            reader.close();
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    e.getMessage()
+            );
+        }
+
+        return count;
     }
 
     // Main Method
@@ -48,10 +99,28 @@ public class EmployeePayrollService {
         EmployeePayrollService service =
                 new EmployeePayrollService();
 
+        // Add Employees
         service.addEmployee(employee1);
 
         service.addEmployee(employee2);
 
-        service.writeEmployeePayroll();
+        // Write To File
+        String fileName =
+                "employee_payroll.txt";
+
+        service.writeEmployeePayrollToFile(
+                fileName
+        );
+
+        // Count Entries
+        int entries =
+                service.countEntries(
+                        fileName
+                );
+
+        System.out.println(
+                "Number Of Entries In File : "
+                        + entries
+        );
     }
 }
