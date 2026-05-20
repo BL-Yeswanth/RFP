@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class AddressBook {
 
@@ -13,62 +12,29 @@ public class AddressBook {
         contactList.add(contact);
     }
 
-    // Edit Contact Using Name
-    public void editContact(
+    // Delete Contact Using Name
+    public void deleteContact(
             String firstName) {
-
-        Scanner scanner =
-                new Scanner(System.in);
 
         boolean found = false;
 
-        for (Contact contact
-                : contactList) {
+        for (int i = 0;
+             i < contactList.size();
+             i++) {
 
-            if (contact.firstName.equals(
-                    firstName)) {
+            if (contactList.get(i)
+                    .firstName
+                    .equals(firstName)) {
+
+                contactList.remove(i);
 
                 found = true;
 
                 System.out.println(
-                        "Enter New Address:"
+                        "Contact Deleted Successfully"
                 );
-                contact.address =
-                        scanner.nextLine();
 
-                System.out.println(
-                        "Enter New City:"
-                );
-                contact.city =
-                        scanner.nextLine();
-
-                System.out.println(
-                        "Enter New State:"
-                );
-                contact.state =
-                        scanner.nextLine();
-
-                System.out.println(
-                        "Enter New Zip:"
-                );
-                contact.zip =
-                        scanner.nextLine();
-
-                System.out.println(
-                        "Enter New Phone Number:"
-                );
-                contact.phoneNumber =
-                        scanner.nextLine();
-
-                System.out.println(
-                        "Enter New Email:"
-                );
-                contact.email =
-                        scanner.nextLine();
-
-                System.out.println(
-                        "Contact Updated Successfully"
-                );
+                break;
             }
         }
 
