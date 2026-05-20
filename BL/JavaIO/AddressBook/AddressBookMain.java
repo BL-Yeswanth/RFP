@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,112 +14,116 @@ public class AddressBookMain {
         Scanner scanner =
                 new Scanner(System.in);
 
-        // Dictionary Of Address Books
+        // Multiple Address Books
         Map<String, AddressBook> addressBookMap =
                 new HashMap<>();
 
-        // Create Address Book
-        System.out.println(
-                "\nEnter Address Book Name:"
-        );
-
-        String bookName =
-                scanner.nextLine();
-
-        AddressBook addressBook =
+        // First Address Book
+        AddressBook familyBook =
                 new AddressBook();
 
+        familyBook.addContact(
+                new Contact(
+                        "Yaswanth",
+                        "Polisetti",
+                        "ABC Street",
+                        "Chennai",
+                        "Tamil Nadu",
+                        "600001",
+                        "9876543210",
+                        "yas@gmail.com"
+                )
+        );
+
+        familyBook.addContact(
+                new Contact(
+                        "Kiran",
+                        "Kumar",
+                        "XYZ Street",
+                        "Hyderabad",
+                        "Telangana",
+                        "500001",
+                        "9876501234",
+                        "kiran@gmail.com"
+                )
+        );
+
         addressBookMap.put(
-                bookName,
-                addressBook
+                "Family",
+                familyBook
         );
 
-        char choice;
+        // Second Address Book
+        AddressBook friendsBook =
+                new AddressBook();
 
-        do {
+        friendsBook.addContact(
+                new Contact(
+                        "Rahul",
+                        "Sharma",
+                        "MG Road",
+                        "Chennai",
+                        "Tamil Nadu",
+                        "600002",
+                        "9988776655",
+                        "rahul@gmail.com"
+                )
+        );
 
-            // Read Contact Details
-            System.out.println(
-                    "\nEnter First Name:"
-            );
-            String firstName =
-                    scanner.nextLine();
+        addressBookMap.put(
+                "Friends",
+                friendsBook
+        );
 
-            System.out.println(
-                    "Enter Last Name:"
-            );
-            String lastName =
-                    scanner.nextLine();
-
-            System.out.println(
-                    "Enter Address:"
-            );
-            String address =
-                    scanner.nextLine();
-
-            System.out.println(
-                    "Enter City:"
-            );
-            String city =
-                    scanner.nextLine();
-
-            System.out.println(
-                    "Enter State:"
-            );
-            String state =
-                    scanner.nextLine();
-
-            System.out.println(
-                    "Enter Zip:"
-            );
-            String zip =
-                    scanner.nextLine();
-
-            System.out.println(
-                    "Enter Phone Number:"
-            );
-            String phoneNumber =
-                    scanner.nextLine();
-
-            System.out.println(
-                    "Enter Email:"
-            );
-            String email =
-                    scanner.nextLine();
-
-            // Create Contact
-            Contact person =
-                    new Contact(
-                            firstName,
-                            lastName,
-                            address,
-                            city,
-                            state,
-                            zip,
-                            phoneNumber,
-                            email
-                    );
-
-            // Add Contact
-            addressBook.addContact(person);
-
-            // Continue Option
-            System.out.println(
-                    "\nDo You Want To Add Another Contact? (y/n)"
-            );
-
-            choice =
-                    scanner.nextLine().charAt(0);
-
-        } while (choice == 'y'
-                || choice == 'Y');
-
-        // Display Contacts
+        // Search By City
         System.out.println(
-                "\nAll Contacts:"
+                "\nEnter City To Search:"
         );
 
-        addressBook.displayContacts();
+        String city =
+                scanner.nextLine();
+
+        System.out.println(
+                "\nPersons Found In City:"
+        );
+
+        for (String bookName
+                : addressBookMap.keySet()) {
+
+            List<Contact> cityResult =
+                    addressBookMap
+                            .get(bookName)
+                            .searchByCity(city);
+
+            cityResult.forEach(
+                    Contact::displayContact
+            );
+        }
+
+        // Search By State
+        System.out.println(
+                "\nEnter State To Search:"
+        );
+
+        String state =
+                scanner.nextLine();
+
+        System.out.println(
+                "\nPersons Found In State:"
+        );
+
+        for (String bookName
+                : addressBookMap.keySet()) {
+
+            List<Contact> stateResult =
+                    addressBookMap
+                            .get(bookName)
+                            .searchByState(state);
+
+            stateResult.forEach(
+                    Contact::displayContact
+            );
+        }
 
         scanner.close();
     }

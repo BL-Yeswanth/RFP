@@ -1,44 +1,40 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
     ArrayList<Contact> contactList =
             new ArrayList<>();
 
-    // Add Contact With Duplicate Check
+    // Add Contact
     public void addContact(
             Contact contact) {
 
-        boolean isDuplicate =
-                contactList.stream()
-                        .anyMatch(
-                                person ->
-                                        person.equals(contact)
-                        );
-
-        if (isDuplicate) {
-
-            System.out.println(
-                    "Duplicate Contact Found"
-            );
-
-        } else {
-
-            contactList.add(contact);
-
-            System.out.println(
-                    "Contact Added Successfully"
-            );
-        }
+        contactList.add(contact);
     }
 
-    // Display Contacts
-    public void displayContacts() {
+    // Search By City
+    public List<Contact> searchByCity(
+            String city) {
 
-        for (Contact contact
-                : contactList) {
+        return contactList.stream()
+                .filter(
+                        person ->
+                                person.city.equalsIgnoreCase(city)
+                )
+                .collect(Collectors.toList());
+    }
 
-            contact.displayContact();
-        }
+    // Search By State
+    public List<Contact> searchByState(
+            String state) {
+
+        return contactList.stream()
+                .filter(
+                        person ->
+                                person.state.equalsIgnoreCase(state)
+                )
+                .collect(Collectors.toList());
     }
 }
