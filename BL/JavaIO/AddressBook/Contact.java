@@ -34,6 +34,10 @@ public class Contact {
     public void displayContact() {
 
         System.out.println(
+                "\nContact Details"
+        );
+
+        System.out.println(
                 "First Name : "
                         + firstName
         );
