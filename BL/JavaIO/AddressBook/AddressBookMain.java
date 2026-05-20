@@ -1,24 +1,21 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
     public static void main(String[] args) {
 
         System.out.println(
-                "Welcome to Address Book Program"
+                "Welcome To Address Book Program"
         );
-
-        Scanner scanner =
-                new Scanner(System.in);
 
         // Multiple Address Books
         Map<String, AddressBook> addressBookMap =
                 new HashMap<>();
 
-        // First Address Book
+        // Address Book 1
         AddressBook familyBook =
                 new AddressBook();
 
@@ -53,7 +50,7 @@ public class AddressBookMain {
                 familyBook
         );
 
-        // Second Address Book
+        // Address Book 2
         AddressBook friendsBook =
                 new AddressBook();
 
@@ -75,56 +72,76 @@ public class AddressBookMain {
                 friendsBook
         );
 
-        // Search By City
+        // Dictionary Of City And Persons
+        Map<String, ArrayList<Contact>> cityMap =
+                new HashMap<>();
+
+        // Dictionary Of State And Persons
+        Map<String, ArrayList<Contact>> stateMap =
+                new HashMap<>();
+
+        // Store Contacts In Dictionaries
+        addressBookMap.values()
+                .stream()
+                .flatMap(
+                        addressBook ->
+                                addressBook
+                                        .getContacts()
+                                        .stream()
+                )
+                .forEach(contact -> {
+
+                    cityMap
+                            .computeIfAbsent(
+                                    contact.city,
+                                    k -> new ArrayList<>()
+                            )
+                            .add(contact);
+
+                    stateMap
+                            .computeIfAbsent(
+                                    contact.state,
+                                    k -> new ArrayList<>()
+                            )
+                            .add(contact);
+                });
+
+        // View Persons By City
         System.out.println(
-                "\nEnter City To Search:"
+                "\nPersons By City"
         );
 
-        String city =
-                scanner.nextLine();
+        cityMap.forEach(
+                (city, persons) -> {
 
-        System.out.println(
-                "\nPersons Found In City:"
+                    System.out.println(
+                            "\nCity : "
+                                    + city
+                    );
+
+                    persons.forEach(
+                            Contact::displayContact
+                    );
+                }
         );
 
-        for (String bookName
-                : addressBookMap.keySet()) {
-
-            List<Contact> cityResult =
-                    addressBookMap
-                            .get(bookName)
-                            .searchByCity(city);
-
-            cityResult.forEach(
-                    Contact::displayContact
-            );
-        }
-
-        // Search By State
+        // View Persons By State
         System.out.println(
-                "\nEnter State To Search:"
+                "\nPersons By State"
         );
 
-        String state =
-                scanner.nextLine();
+        stateMap.forEach(
+                (state, persons) -> {
 
-        System.out.println(
-                "\nPersons Found In State:"
+                    System.out.println(
+                            "\nState : "
+                                    + state
+                    );
+
+                    persons.forEach(
+                            Contact::displayContact
+                    );
+                }
         );
-
-        for (String bookName
-                : addressBookMap.keySet()) {
-
-            List<Contact> stateResult =
-                    addressBookMap
-                            .get(bookName)
-                            .searchByState(state);
-
-            stateResult.forEach(
-                    Contact::displayContact
-            );
-        }
-
-        scanner.close();
     }
 }

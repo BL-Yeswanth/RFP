@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -14,27 +12,9 @@ public class AddressBook {
         contactList.add(contact);
     }
 
-    // Search By City
-    public List<Contact> searchByCity(
-            String city) {
+    // Get Contact List
+    public ArrayList<Contact> getContacts() {
 
-        return contactList.stream()
-                .filter(
-                        person ->
-                                person.city.equalsIgnoreCase(city)
-                )
-                .collect(Collectors.toList());
-    }
-
-    // Search By State
-    public List<Contact> searchByState(
-            String state) {
-
-        return contactList.stream()
-                .filter(
-                        person ->
-                                person.state.equalsIgnoreCase(state)
-                )
-                .collect(Collectors.toList());
+        return contactList;
     }
 }
