@@ -14,54 +14,93 @@ public class AddressBookMain {
         AddressBook addressBook =
                 new AddressBook();
 
-        // Add Contacts
-        Contact person1 =
-                new Contact(
-                        "Yaswanth",
-                        "Polisetti",
-                        "ABC Street",
-                        "Chennai",
-                        "Tamil Nadu",
-                        "600001",
-                        "9876543210",
-                        "yaswanth@gmail.com"
-                );
+        char choice;
 
-        Contact person2 =
-                new Contact(
-                        "Kiran",
-                        "Kumar",
-                        "XYZ Street",
-                        "Hyderabad",
-                        "Telangana",
-                        "500001",
-                        "9876501234",
-                        "kiran@gmail.com"
-                );
+        do {
 
-        addressBook.addContact(person1);
-        addressBook.addContact(person2);
+            // Read Contact Details
+            System.out.println(
+                    "\nEnter First Name:"
+            );
+            String firstName =
+                    scanner.nextLine();
 
-        // Display Before Delete
+            System.out.println(
+                    "Enter Last Name:"
+            );
+            String lastName =
+                    scanner.nextLine();
+
+            System.out.println(
+                    "Enter Address:"
+            );
+            String address =
+                    scanner.nextLine();
+
+            System.out.println(
+                    "Enter City:"
+            );
+            String city =
+                    scanner.nextLine();
+
+            System.out.println(
+                    "Enter State:"
+            );
+            String state =
+                    scanner.nextLine();
+
+            System.out.println(
+                    "Enter Zip:"
+            );
+            String zip =
+                    scanner.nextLine();
+
+            System.out.println(
+                    "Enter Phone Number:"
+            );
+            String phoneNumber =
+                    scanner.nextLine();
+
+            System.out.println(
+                    "Enter Email:"
+            );
+            String email =
+                    scanner.nextLine();
+
+            // Create Contact Object
+            Contact person =
+                    new Contact(
+                            firstName,
+                            lastName,
+                            address,
+                            city,
+                            state,
+                            zip,
+                            phoneNumber,
+                            email
+                    );
+
+            // Add Contact
+            addressBook.addContact(person);
+
+            System.out.println(
+                    "\nContact Added Successfully"
+            );
+
+            // Continue Option
+            System.out.println(
+                    "\nDo You Want To Add Another Contact? (y/n)"
+            );
+
+            choice =
+                    scanner.nextLine().charAt(0);
+
+        } while (choice == 'y'
+                || choice == 'Y');
+
+        // Display All Contacts
         System.out.println(
-                "\nBefore Delete:"
-        );
-
-        addressBook.displayContacts();
-
-        // Delete Contact
-        System.out.println(
-                "\nEnter First Name To Delete:"
-        );
-
-        String name =
-                scanner.nextLine();
-
-        addressBook.deleteContact(name);
-
-        // Display After Delete
-        System.out.println(
-                "\nAfter Delete:"
+                "\nAll Contacts:"
         );
 
         addressBook.displayContacts();
