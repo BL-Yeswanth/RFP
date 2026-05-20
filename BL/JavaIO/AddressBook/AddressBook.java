@@ -12,7 +12,7 @@ public class AddressBook {
         contactList.add(contact);
     }
 
-    // Display All Contacts
+    // Display Contacts
     public void displayContacts() {
 
         for (Contact contact
