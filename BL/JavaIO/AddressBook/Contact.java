@@ -52,15 +52,5 @@ public class Contact {
                 "State : "
                         + state
         );
-
-        System.out.println(
-                "Phone Number : "
-                        + phoneNumber
-        );
-
-        System.out.println(
-                "Email : "
-                        + email
-        );
     }
 }
