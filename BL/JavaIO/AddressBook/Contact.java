@@ -30,27 +30,17 @@ public class Contact {
         this.email = email;
     }
 
-    // Display Contact
-    public void displayContact() {
+    // Override toString Method
+    @Override
+    public String toString() {
 
-        System.out.println(
-                "\nFirst Name : "
-                        + firstName
-        );
-
-        System.out.println(
-                "Last Name : "
-                        + lastName
-        );
-
-        System.out.println(
-                "City : "
-                        + city
-        );
-
-        System.out.println(
-                "State : "
-                        + state
-        );
+        return "\nFirst Name : " + firstName
+                + "\nLast Name : " + lastName
+                + "\nAddress : " + address
+                + "\nCity : " + city
+                + "\nState : " + state
+                + "\nZip : " + zip
+                + "\nPhone Number : " + phoneNumber
+                + "\nEmail : " + email;
     }
 }
