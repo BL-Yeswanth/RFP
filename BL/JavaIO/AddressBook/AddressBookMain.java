@@ -25,37 +25,29 @@ public class AddressBookMain {
 
         addressBook.addContact(
                 new Contact(
-                        "Arun",
+                        "Kiran",
                         "Kumar",
                         "XYZ Street",
                         "Hyderabad",
                         "Telangana",
                         "500001",
                         "9876501234",
-                        "arun@gmail.com"
-                )
-        );
-
-        addressBook.addContact(
-                new Contact(
-                        "Kiran",
-                        "Reddy",
-                        "MG Road",
-                        "Bangalore",
-                        "Karnataka",
-                        "560001",
-                        "9988776655",
                         "kiran@gmail.com"
                 )
         );
 
-        // Sort By City
-        addressBook.sortByCity();
+        // File Name
+        String fileName =
+                "addressbook.txt";
 
-        // Sort By State
-        addressBook.sortByState();
+        // Write To File
+        addressBook.writeContactsToFile(
+                fileName
+        );
 
-        // Sort By Zip
-        addressBook.sortByZip();
+        // Read From File
+        addressBook.readContactsFromFile(
+                fileName
+        );
     }
 }
