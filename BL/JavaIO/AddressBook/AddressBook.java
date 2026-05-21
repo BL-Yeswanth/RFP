@@ -13,13 +13,49 @@ public class AddressBook {
         contactList.add(contact);
     }
 
-    // Sort Contacts By First Name
-    public void sortContactsByName() {
+    // Sort By City
+    public void sortByCity() {
+
+        System.out.println(
+                "\nContacts Sorted By City"
+        );
 
         contactList.stream()
                 .sorted(
                         Comparator.comparing(
-                                contact -> contact.firstName
+                                contact -> contact.city
+                        )
+                )
+                .forEach(System.out::println);
+    }
+
+    // Sort By State
+    public void sortByState() {
+
+        System.out.println(
+                "\nContacts Sorted By State"
+        );
+
+        contactList.stream()
+                .sorted(
+                        Comparator.comparing(
+                                contact -> contact.state
+                        )
+                )
+                .forEach(System.out::println);
+    }
+
+    // Sort By Zip
+    public void sortByZip() {
+
+        System.out.println(
+                "\nContacts Sorted By Zip"
+        );
+
+        contactList.stream()
+                .sorted(
+                        Comparator.comparing(
+                                contact -> contact.zip
                         )
                 )
                 .forEach(System.out::println);

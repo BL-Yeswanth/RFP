@@ -49,11 +49,13 @@ public class AddressBookMain {
                 )
         );
 
-        // Sort And Display Contacts
-        System.out.println(
-                "\nContacts Sorted Alphabetically By Name"
-        );
+        // Sort By City
+        addressBook.sortByCity();
 
-        addressBook.sortContactsByName();
+        // Sort By State
+        addressBook.sortByState();
+
+        // Sort By Zip
+        addressBook.sortByZip();
     }
 }
