@@ -30,7 +30,7 @@ public class Contact {
         this.email = email;
     }
 
-    // Display Contact Details
+    // Display Contact
     public void displayContact() {
 
         System.out.println(

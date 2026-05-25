@@ -11,76 +11,46 @@ public class AddressBookMain {
         Scanner scanner =
                 new Scanner(System.in);
 
-        // Create AddressBook Object
         AddressBook addressBook =
                 new AddressBook();
 
-        // Read Contact Details From Console
-        System.out.println(
-                "\nEnter First Name:"
-        );
-        String firstName =
-                scanner.nextLine();
-
-        System.out.println(
-                "Enter Last Name:"
-        );
-        String lastName =
-                scanner.nextLine();
-
-        System.out.println(
-                "Enter Address:"
-        );
-        String address =
-                scanner.nextLine();
-
-        System.out.println(
-                "Enter City:"
-        );
-        String city =
-                scanner.nextLine();
-
-        System.out.println(
-                "Enter State:"
-        );
-        String state =
-                scanner.nextLine();
-
-        System.out.println(
-                "Enter Zip:"
-        );
-        String zip =
-                scanner.nextLine();
-
-        System.out.println(
-                "Enter Phone Number:"
-        );
-        String phoneNumber =
-                scanner.nextLine();
-
-        System.out.println(
-                "Enter Email:"
-        );
-        String email =
-                scanner.nextLine();
-
-        // Create Contact Object
+        // Add Contact
         Contact person =
                 new Contact(
-                        firstName,
-                        lastName,
-                        address,
-                        city,
-                        state,
-                        zip,
-                        phoneNumber,
-                        email
+                        "Yaswanth",
+                        "Polisetti",
+                        "ABC Street",
+                        "Chennai",
+                        "Tamil Nadu",
+                        "600001",
+                        "9876543210",
+                        "yas@gmail.com"
                 );
 
-        // Add Contact To AddressBook
         addressBook.addContact(person);
 
-        // Display Contacts
+        // Display Before Edit
+        System.out.println(
+                "\nBefore Editing"
+        );
+
+        addressBook.displayContacts();
+
+        // Edit Contact
+        System.out.println(
+                "\nEnter First Name To Edit:"
+        );
+
+        String name =
+                scanner.nextLine();
+
+        addressBook.editContact(name);
+
+        // Display After Edit
+        System.out.println(
+                "\nAfter Editing"
+        );
+
         addressBook.displayContacts();
 
         scanner.close();
