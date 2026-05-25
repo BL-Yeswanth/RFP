@@ -14,8 +14,8 @@ public class AddressBookMain {
         AddressBook addressBook =
                 new AddressBook();
 
-        // Add Contact
-        Contact person =
+        // Add Contacts
+        Contact person1 =
                 new Contact(
                         "Yaswanth",
                         "Polisetti",
@@ -27,28 +27,41 @@ public class AddressBookMain {
                         "yas@gmail.com"
                 );
 
-        addressBook.addContact(person);
+        Contact person2 =
+                new Contact(
+                        "Kiran",
+                        "Kumar",
+                        "XYZ Street",
+                        "Hyderabad",
+                        "Telangana",
+                        "500001",
+                        "9876501234",
+                        "kiran@gmail.com"
+                );
 
-        // Display Before Edit
+        addressBook.addContact(person1);
+        addressBook.addContact(person2);
+
+        // Display Before Delete
         System.out.println(
-                "\nBefore Editing"
+                "\nBefore Delete"
         );
 
         addressBook.displayContacts();
 
-        // Edit Contact
+        // Delete Contact
         System.out.println(
-                "\nEnter First Name To Edit:"
+                "\nEnter First Name To Delete:"
         );
 
         String name =
                 scanner.nextLine();
 
-        addressBook.editContact(name);
+        addressBook.deleteContact(name);
 
-        // Display After Edit
+        // Display After Delete
         System.out.println(
-                "\nAfter Editing"
+                "\nAfter Delete"
         );
 
         addressBook.displayContacts();
