@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class AddressBook {
 
-    // Collection To Store Multiple Contacts
+    // Collection To Store Contacts
     ArrayList<Contact> contactList =
             new ArrayList<>();
 
@@ -13,11 +13,11 @@ public class AddressBook {
         contactList.add(contact);
 
         System.out.println(
-                "\nContact Added Successfully"
+                "Contact Added Successfully"
         );
     }
 
-    // Display All Contacts
+    // Display Contacts
     public void displayContacts() {
 
         for (Contact contact

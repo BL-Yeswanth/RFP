@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -11,12 +13,34 @@ public class AddressBookMain {
         Scanner scanner =
                 new Scanner(System.in);
 
-        AddressBook addressBook =
-                new AddressBook();
+        // Dictionary Of Address Books
+        Map<String, AddressBook> addressBookMap =
+                new HashMap<>();
 
         char choice;
 
         do {
+
+            // Create Address Book
+            System.out.println(
+                    "\nEnter Address Book Name:"
+            );
+
+            String bookName =
+                    scanner.nextLine();
+
+            AddressBook addressBook =
+                    new AddressBook();
+
+            // Add Address Book To Dictionary
+            addressBookMap.put(
+                    bookName,
+                    addressBook
+            );
+
+            System.out.println(
+                    "Address Book Created Successfully"
+            );
 
             // Read Contact Details
             System.out.println(
@@ -67,7 +91,7 @@ public class AddressBookMain {
             String email =
                     scanner.nextLine();
 
-            // Create Contact Object
+            // Create Contact
             Contact person =
                     new Contact(
                             firstName,
@@ -80,12 +104,12 @@ public class AddressBookMain {
                             email
                     );
 
-            // Add Contact
+            // Add Contact To Address Book
             addressBook.addContact(person);
 
             // Continue Option
             System.out.println(
-                    "\nDo You Want To Add Another Contact? (y/n)"
+                    "\nDo You Want To Add Another Address Book? (y/n)"
             );
 
             choice =
@@ -94,12 +118,23 @@ public class AddressBookMain {
         } while (choice == 'y'
                 || choice == 'Y');
 
-        // Display All Contacts
+        // Display All Address Books
         System.out.println(
-                "\nAll Contacts"
+                "\nAll Address Books"
         );
 
-        addressBook.displayContacts();
+        for (String bookName
+                : addressBookMap.keySet()) {
+
+            System.out.println(
+                    "\nAddress Book Name : "
+                            + bookName
+            );
+
+            addressBookMap
+                    .get(bookName)
+                    .displayContacts();
+        }
 
         scanner.close();
     }
