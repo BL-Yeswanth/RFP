@@ -1,7 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class AddressBookMain {
 
@@ -11,14 +10,11 @@ public class AddressBookMain {
                 "Welcome To Address Book Program"
         );
 
-        Scanner scanner =
-                new Scanner(System.in);
-
-        // Dictionary Of Multiple Address Books
+        // Dictionary Of Address Books
         Map<String, AddressBook> addressBookMap =
                 new HashMap<>();
 
-        // First Address Book
+        // Family Address Book
         AddressBook familyBook =
                 new AddressBook();
 
@@ -53,7 +49,7 @@ public class AddressBookMain {
                 familyBook
         );
 
-        // Second Address Book
+        // Friends Address Book
         AddressBook friendsBook =
                 new AddressBook();
 
@@ -88,54 +84,76 @@ public class AddressBookMain {
                 friendsBook
         );
 
-        // Search By City
-        System.out.println(
-                "\nEnter City To Search:"
-        );
+        // Dictionary Of City And Persons
+        Map<String, ArrayList<Contact>> cityMap =
+                new HashMap<>();
 
-        String city =
-                scanner.nextLine();
+        // Dictionary Of State And Persons
+        Map<String, ArrayList<Contact>> stateMap =
+                new HashMap<>();
 
-        System.out.println(
-                "\nPersons Found In City:"
-        );
-
+        // Store Contacts In City And State Dictionaries
         addressBookMap.values()
                 .stream()
                 .flatMap(
                         addressBook ->
                                 addressBook
-                                        .searchByCity(city)
+                                        .getContacts()
                                         .stream()
                 )
-                .forEach(
-                        Contact::displayContact
-                );
+                .forEach(contact -> {
 
-        // Search By State
+                    cityMap
+                            .computeIfAbsent(
+                                    contact.city,
+                                    k -> new ArrayList<>()
+                            )
+                            .add(contact);
+
+                    stateMap
+                            .computeIfAbsent(
+                                    contact.state,
+                                    k -> new ArrayList<>()
+                            )
+                            .add(contact);
+                });
+
+        // Display Persons By City
         System.out.println(
-                "\nEnter State To Search:"
+                "\nPersons By City"
         );
 
-        String state =
-                scanner.nextLine();
+        cityMap.forEach(
+                (city, persons) -> {
 
-        System.out.println(
-                "\nPersons Found In State:"
+                    System.out.println(
+                            "\nCity : "
+                                    + city
+                    );
+
+                    persons.forEach(
+                            Contact::displayContact
+                    );
+                }
         );
 
-        addressBookMap.values()
-                .stream()
-                .flatMap(
-                        addressBook ->
-                                addressBook
-                                        .searchByState(state)
-                                        .stream()
-                )
-                .forEach(
-                        Contact::displayContact
-                );
+        // Display Persons By State
+        System.out.println(
+                "\nPersons By State"
+        );
 
-        scanner.close();
+        stateMap.forEach(
+                (state, persons) -> {
+
+                    System.out.println(
+                            "\nState : "
+                                    + state
+                    );
+
+                    persons.forEach(
+                            Contact::displayContact
+                    );
+                }
+        );
     }
 }
