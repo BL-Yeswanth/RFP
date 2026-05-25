@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class AddressBook {
 
@@ -13,9 +14,15 @@ public class AddressBook {
         contactList.add(contact);
     }
 
-    // Get Contact List
-    public ArrayList<Contact> getContacts() {
+    // Sort Contacts By Name
+    public void sortByName() {
 
-        return contactList;
+        contactList.stream()
+                .sorted(
+                        Comparator.comparing(
+                                contact -> contact.firstName
+                        )
+                )
+                .forEach(System.out::println);
     }
 }
