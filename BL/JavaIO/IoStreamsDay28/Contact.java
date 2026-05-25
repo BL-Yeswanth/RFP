@@ -30,16 +30,17 @@ public class Contact {
         this.email = email;
     }
 
-    // Override toString Method
+    // Convert Object To String
     @Override
     public String toString() {
 
-        return "\nFirst Name : " + firstName
-                + "\nLast Name : " + lastName
-                + "\nCity : " + city
-                + "\nState : " + state
-                + "\nZip : " + zip
-                + "\nPhone Number : " + phoneNumber
-                + "\nEmail : " + email;
+        return firstName + ", "
+                + lastName + ", "
+                + address + ", "
+                + city + ", "
+                + state + ", "
+                + zip + ", "
+                + phoneNumber + ", "
+                + email;
     }
 }

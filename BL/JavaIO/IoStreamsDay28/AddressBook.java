@@ -1,5 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class AddressBook {
 
@@ -14,51 +18,68 @@ public class AddressBook {
         contactList.add(contact);
     }
 
-    // Sort By City
-    public void sortByCity() {
+    // Write Contacts To File
+    public void writeContactsToFile(
+            String fileName) {
 
-        System.out.println(
-                "\nContacts Sorted By City"
-        );
+        try {
 
-        contactList.stream()
-                .sorted(
-                        Comparator.comparing(
-                                contact -> contact.city
-                        )
-                )
-                .forEach(System.out::println);
+            FileWriter writer =
+                    new FileWriter(fileName);
+
+            for (Contact contact
+                    : contactList) {
+
+                writer.write(
+                        contact.toString()
+                                + "\n"
+                );
+            }
+
+            writer.close();
+
+            System.out.println(
+                    "\nContacts Written To File Successfully"
+            );
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    e.getMessage()
+            );
+        }
     }
 
-    // Sort By State
-    public void sortByState() {
+    // Read Contacts From File
+    public void readContactsFromFile(
+            String fileName) {
 
-        System.out.println(
-                "\nContacts Sorted By State"
-        );
+        try {
 
-        contactList.stream()
-                .sorted(
-                        Comparator.comparing(
-                                contact -> contact.state
-                        )
-                )
-                .forEach(System.out::println);
-    }
+            BufferedReader reader =
+                    new BufferedReader(
+                            new FileReader(fileName)
+                    );
 
-    // Sort By Zip
-    public void sortByZip() {
+            String line;
 
-        System.out.println(
-                "\nContacts Sorted By Zip"
-        );
+            System.out.println(
+                    "\nContacts From File"
+            );
 
-        contactList.stream()
-                .sorted(
-                        Comparator.comparing(
-                                contact -> contact.zip
-                        )
-                )
-                .forEach(System.out::println);
+            while ((line = reader.readLine())
+                    != null) {
+
+                System.out.println(line);
+            }
+
+            reader.close();
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    e.getMessage()
+            );
+        }
     }
 }
