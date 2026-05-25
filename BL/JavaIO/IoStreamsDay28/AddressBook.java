@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class AddressBook {
 
+    // Collection To Store Multiple Contacts
     ArrayList<Contact> contactList =
             new ArrayList<>();
 
@@ -16,41 +17,7 @@ public class AddressBook {
         );
     }
 
-    // Delete Contact Using Name
-    public void deleteContact(
-            String firstName) {
-
-        boolean found = false;
-
-        for (int i = 0;
-             i < contactList.size();
-             i++) {
-
-            if (contactList.get(i)
-                    .firstName
-                    .equalsIgnoreCase(firstName)) {
-
-                contactList.remove(i);
-
-                found = true;
-
-                System.out.println(
-                        "\nContact Deleted Successfully"
-                );
-
-                break;
-            }
-        }
-
-        if (!found) {
-
-            System.out.println(
-                    "\nContact Not Found"
-            );
-        }
-    }
-
-    // Display Contacts
+    // Display All Contacts
     public void displayContacts() {
 
         for (Contact contact
