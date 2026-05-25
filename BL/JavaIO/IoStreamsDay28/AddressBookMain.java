@@ -36,17 +36,17 @@ public class AddressBookMain {
                 )
         );
 
-        // File Name
+        // CSV File Name
         String fileName =
-                "addressbook.txt";
+                "addressbook.csv";
 
-        // Write To File
-        addressBook.writeContactsToFile(
+        // Write To CSV File
+        addressBook.writeContactsToCSV(
                 fileName
         );
 
-        // Read From File
-        addressBook.readContactsFromFile(
+        // Read From CSV File
+        addressBook.readContactsFromCSV(
                 fileName
         );
     }

@@ -29,18 +29,4 @@ public class Contact {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
-
-    // Convert Object To String
-    @Override
-    public String toString() {
-
-        return firstName + ", "
-                + lastName + ", "
-                + address + ", "
-                + city + ", "
-                + state + ", "
-                + zip + ", "
-                + phoneNumber + ", "
-                + email;
-    }
 }

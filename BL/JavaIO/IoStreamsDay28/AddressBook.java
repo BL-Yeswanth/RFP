@@ -1,9 +1,12 @@
-import java.io.BufferedReader;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddressBook {
 
@@ -18,28 +21,53 @@ public class AddressBook {
         contactList.add(contact);
     }
 
-    // Write Contacts To File
-    public void writeContactsToFile(
+    // Write Contacts To CSV File
+    public void writeContactsToCSV(
             String fileName) {
 
         try {
 
-            FileWriter writer =
-                    new FileWriter(fileName);
+            CSVWriter writer =
+                    new CSVWriter(
+                            new FileWriter(fileName)
+                    );
 
+            // Header
+            String[] header = {
+                    "FirstName",
+                    "LastName",
+                    "Address",
+                    "City",
+                    "State",
+                    "Zip",
+                    "PhoneNumber",
+                    "Email"
+            };
+
+            writer.writeNext(header);
+
+            // Contact Data
             for (Contact contact
                     : contactList) {
 
-                writer.write(
-                        contact.toString()
-                                + "\n"
-                );
+                String[] data = {
+                        contact.firstName,
+                        contact.lastName,
+                        contact.address,
+                        contact.city,
+                        contact.state,
+                        contact.zip,
+                        contact.phoneNumber,
+                        contact.email
+                };
+
+                writer.writeNext(data);
             }
 
             writer.close();
 
             System.out.println(
-                    "\nContacts Written To File Successfully"
+                    "\nContacts Written To CSV File Successfully"
             );
 
         } catch (IOException e) {
@@ -50,32 +78,41 @@ public class AddressBook {
         }
     }
 
-    // Read Contacts From File
-    public void readContactsFromFile(
+    // Read Contacts From CSV File
+    public void readContactsFromCSV(
             String fileName) {
 
         try {
 
-            BufferedReader reader =
-                    new BufferedReader(
+            CSVReader reader =
+                    new CSVReader(
                             new FileReader(fileName)
                     );
 
-            String line;
+            List<String[]> contacts =
+                    reader.readAll();
 
             System.out.println(
-                    "\nContacts From File"
+                    "\nContacts From CSV File"
             );
 
-            while ((line = reader.readLine())
-                    != null) {
+            for (String[] contact
+                    : contacts) {
 
-                System.out.println(line);
+                for (String value
+                        : contact) {
+
+                    System.out.print(
+                            value + " "
+                    );
+                }
+
+                System.out.println();
             }
 
             reader.close();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
 
             System.out.println(
                     e.getMessage()
