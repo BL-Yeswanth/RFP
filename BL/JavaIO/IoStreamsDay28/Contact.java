@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Contact {
 
     String firstName;
@@ -28,6 +30,36 @@ public class Contact {
         this.zip = zip;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    // Override equals Method
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+
+            return true;
+        }
+
+        if (obj == null
+                || getClass() != obj.getClass()) {
+
+            return false;
+        }
+
+        Contact contact =
+                (Contact) obj;
+
+        return firstName.equalsIgnoreCase(
+                contact.firstName
+        );
+    }
+
+    // Override hashCode
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(firstName);
     }
 
     // Display Contact
