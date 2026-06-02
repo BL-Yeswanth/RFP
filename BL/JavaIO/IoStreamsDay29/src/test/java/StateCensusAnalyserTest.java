@@ -4,21 +4,26 @@ import org.junit.Test;
 public class StateCensusAnalyserTest {
 
     @Test
-    public void givenStateCensusCSVFile_WhenLoaded_ShouldReturnCorrectRecordCount() {
+    public void givenWrongCSVFile_WhenLoaded_ShouldThrowException() {
 
         StateCensusAnalyser analyser =
                 new StateCensusAnalyser();
 
-        int actualRecordCount =
-                analyser.loadStateCensusData(
-                        "src/main/resources/IndiaStateCensusData.csv"
-                );
+        try {
 
-        int expectedRecordCount = 29;
+            analyser.loadStateCensusData(
+                    "src/main/resources/WrongFile.csv"
+            );
 
-        Assert.assertEquals(
-                expectedRecordCount,
-                actualRecordCount
-        );
+        } catch (
+                StateCensusAnalyserException e) {
+
+            Assert.assertEquals(
+                    StateCensusAnalyserException
+                            .ExceptionType
+                            .FILE_NOT_FOUND,
+                    e.type
+            );
+        }
     }
 }

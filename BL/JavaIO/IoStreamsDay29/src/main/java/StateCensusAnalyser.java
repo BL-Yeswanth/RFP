@@ -7,7 +7,8 @@ import java.util.Iterator;
 public class StateCensusAnalyser {
 
     public int loadStateCensusData(
-            String csvFilePath) {
+            String csvFilePath)
+            throws StateCensusAnalyserException {
 
         try {
 
@@ -20,31 +21,29 @@ public class StateCensusAnalyser {
                             .withType(
                                     CSVStateCensus.class
                             )
-                            .withIgnoreLeadingWhiteSpace(
-                                    true
-                            )
                             .build();
 
             Iterator<CSVStateCensus> iterator =
                     csvToBean.iterator();
 
-            int recordCount = 0;
+            int count = 0;
 
             while (iterator.hasNext()) {
 
                 iterator.next();
-                recordCount++;
+                count++;
             }
 
-            return recordCount;
+            return count;
 
         } catch (Exception e) {
 
-            System.out.println(
-                    e.getMessage()
+            throw new StateCensusAnalyserException(
+                    "CSV File Not Found",
+                    StateCensusAnalyserException
+                            .ExceptionType
+                            .FILE_NOT_FOUND
             );
-
-            return 0;
         }
     }
 }
