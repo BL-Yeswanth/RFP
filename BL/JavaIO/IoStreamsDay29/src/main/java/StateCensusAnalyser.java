@@ -1,13 +1,13 @@
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Iterator;
 
 public class StateCensusAnalyser {
 
-    public int loadStateCensusData(
-            String csvFilePath)
+    public int loadStateCensusData(String csvFilePath)
             throws StateCensusAnalyserException {
 
         try {
@@ -16,9 +16,24 @@ public class StateCensusAnalyser {
 
                 throw new StateCensusAnalyserException(
                         "Invalid File Type",
-                        StateCensusAnalyserException
-                                .ExceptionType
-                                .INVALID_FILE_TYPE
+                        StateCensusAnalyserException.ExceptionType.INVALID_FILE_TYPE
+                );
+            }
+
+            BufferedReader br =
+                    new BufferedReader(
+                            new FileReader(csvFilePath));
+
+            String header = br.readLine();
+
+            br.close();
+
+            if (header != null &&
+                    !header.contains(",")) {
+
+                throw new StateCensusAnalyserException(
+                        "Invalid Delimiter",
+                        StateCensusAnalyserException.ExceptionType.INVALID_DELIMITER
                 );
             }
 
@@ -26,11 +41,8 @@ public class StateCensusAnalyser {
                     new FileReader(csvFilePath);
 
             CsvToBean<CSVStateCensus> csvToBean =
-                    new CsvToBeanBuilder<CSVStateCensus>(
-                            reader)
-                            .withType(
-                                    CSVStateCensus.class
-                            )
+                    new CsvToBeanBuilder<CSVStateCensus>(reader)
+                            .withType(CSVStateCensus.class)
                             .build();
 
             Iterator<CSVStateCensus> iterator =
@@ -39,15 +51,13 @@ public class StateCensusAnalyser {
             int count = 0;
 
             while (iterator.hasNext()) {
-
                 iterator.next();
                 count++;
             }
 
             return count;
 
-        } catch (
-                StateCensusAnalyserException e) {
+        } catch (StateCensusAnalyserException e) {
 
             throw e;
 
@@ -55,9 +65,7 @@ public class StateCensusAnalyser {
 
             throw new StateCensusAnalyserException(
                     "CSV File Not Found",
-                    StateCensusAnalyserException
-                            .ExceptionType
-                            .FILE_NOT_FOUND
+                    StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND
             );
         }
     }

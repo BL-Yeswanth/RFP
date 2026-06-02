@@ -4,7 +4,7 @@ import org.junit.Test;
 public class StateCensusAnalyserTest {
 
     @Test
-    public void givenWrongFileType_WhenLoaded_ShouldThrowException() {
+    public void givenCSVFileWithWrongDelimiter_WhenLoaded_ShouldThrowException() {
 
         StateCensusAnalyser analyser =
                 new StateCensusAnalyser();
@@ -12,16 +12,13 @@ public class StateCensusAnalyserTest {
         try {
 
             analyser.loadStateCensusData(
-                    "src/main/resources/IndiaStateCensusData.txt"
+                    "src/main/resources/IndiaStateCensusWrongDelimiter.csv"
             );
 
-        } catch (
-                StateCensusAnalyserException e) {
+        } catch (StateCensusAnalyserException e) {
 
             Assert.assertEquals(
-                    StateCensusAnalyserException
-                            .ExceptionType
-                            .INVALID_FILE_TYPE,
+                    StateCensusAnalyserException.ExceptionType.INVALID_DELIMITER,
                     e.type
             );
         }
