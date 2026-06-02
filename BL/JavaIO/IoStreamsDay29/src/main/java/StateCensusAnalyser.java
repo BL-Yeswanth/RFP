@@ -12,6 +12,16 @@ public class StateCensusAnalyser {
 
         try {
 
+            if (!csvFilePath.endsWith(".csv")) {
+
+                throw new StateCensusAnalyserException(
+                        "Invalid File Type",
+                        StateCensusAnalyserException
+                                .ExceptionType
+                                .INVALID_FILE_TYPE
+                );
+            }
+
             FileReader reader =
                     new FileReader(csvFilePath);
 
@@ -35,6 +45,11 @@ public class StateCensusAnalyser {
             }
 
             return count;
+
+        } catch (
+                StateCensusAnalyserException e) {
+
+            throw e;
 
         } catch (Exception e) {
 

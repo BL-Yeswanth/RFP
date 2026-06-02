@@ -4,7 +4,7 @@ import org.junit.Test;
 public class StateCensusAnalyserTest {
 
     @Test
-    public void givenWrongCSVFile_WhenLoaded_ShouldThrowException() {
+    public void givenWrongFileType_WhenLoaded_ShouldThrowException() {
 
         StateCensusAnalyser analyser =
                 new StateCensusAnalyser();
@@ -12,7 +12,7 @@ public class StateCensusAnalyserTest {
         try {
 
             analyser.loadStateCensusData(
-                    "src/main/resources/WrongFile.csv"
+                    "src/main/resources/IndiaStateCensusData.txt"
             );
 
         } catch (
@@ -21,7 +21,7 @@ public class StateCensusAnalyserTest {
             Assert.assertEquals(
                     StateCensusAnalyserException
                             .ExceptionType
-                            .FILE_NOT_FOUND,
+                            .INVALID_FILE_TYPE,
                     e.type
             );
         }
